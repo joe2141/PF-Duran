@@ -1,0 +1,37 @@
+<mat-drawer-container class="example-container" autosize>
+  <!--Siderbar-->
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+
+
+  <!--Mi Wrapper-->
+  <div class="example-sidenav-content">
+
+
+    <!--Toolbar-->
+    <mat-toolbar color="primary">
+      <button
+        (click)="drawer.toggle()"
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Nuevas Inscripciones</span>
+    </mat-toolbar>
+
+
+    <!--Mis paginas-->
+    <main>
+
+       <app-tablas></app-tablas>
+
+    </main>
+  </div>
+</mat-drawer-container>
