@@ -1,13 +1,14 @@
-import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { Component } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
-  selector: 'app-formulario',
-  templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.scss']
+  selector: 'app-abm-alumnos',
+  templateUrl: './abm-alumnos.component.html',
+  styleUrls: ['./abm-alumnos.component.scss']
 })
-export class FormularioComponent {
+export class AbmAlumnosComponent {
 
   nombreControl = new FormControl('',
   [
@@ -51,10 +52,14 @@ export class FormularioComponent {
     pais: this.paisControl
   })
 
-  constructor(private dialogRef: DialogRef) {}
+  constructor(private dialogRef: MatDialogRef<AbmAlumnosComponent>) {}
 
   guardar():void {
-    this.dialogRef.close(this.alumnoForms.value)
-  }
+    if (this.alumnoForms.valid){
+      this.dialogRef.close(this.alumnoForms.value)
+    } else {
+      this.alumnoForms.markAllAsTouched();
+    }
 
+  }
 }
