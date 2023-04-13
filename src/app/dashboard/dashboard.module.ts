@@ -6,6 +6,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TablasModule } from '../pages/tablas/tablas.module';
+import { SharedModule } from '../shared/shared.module';
+import { FormularioModule } from '../pages/formulario/formulario.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { TablasModule } from '../pages/tablas/tablas.module';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    TablasModule
+    TablasModule,
+    SharedModule,
+    FormularioModule
   ],
   exports: [
     DashboardComponent

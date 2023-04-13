@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DirectivesModule } from './directives/directives.module';
 import { PipesModule } from './pipes/pipes.module';
+import { FontSizeDirective } from './directives/font-size.directive';
+import { DirectivesModule } from './directives/directives.module';
 
 
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    PipesModule,
+    DirectivesModule
   ],
   exports: [
-    DirectivesModule,
-    PipesModule
-
+    PipesModule,
+    DirectivesModule
   ]
 })
 export class SharedModule { }

@@ -8,6 +8,7 @@ export interface Estudiante {
   apellido: string;
   correo: string;
   curso: string;
+  pais: string;
   fecha_registro: Date;
 
 }
@@ -27,6 +28,7 @@ export class TablasComponent {
       apellido: 'Diez',
       correo: 'Kilian@mail.com',
       curso: 'Angular',
+      pais: 'Argentina',
       fecha_registro: new Date()
     },
     {
@@ -35,6 +37,7 @@ export class TablasComponent {
       apellido: 'Paz',
       correo: 'Elia@mail.com',
       curso: 'Angular',
+      pais: 'Argentina',
       fecha_registro: new Date()
     },
     {
@@ -43,13 +46,14 @@ export class TablasComponent {
       apellido: 'Carballo',
       correo: 'Edurne@mail.com',
       curso: 'Angular',
+      pais: 'Argentina',
       fecha_registro: new Date()
     },
   ];
 
   dataSource = new MatTableDataSource(this.estudiantes);
 
-  displayedColumns: string[] = ['id', 'nombreCompleto', 'correo', 'curso', 'fecha_registro']
+  displayedColumns: string[] = ['id', 'nombreCompleto', 'correo', 'curso', 'pais', 'fecha_registro']
 
   aplicarFiltros(ev: Event): void {
     const inputValue = (ev.target as HTMLInputElement )?.value;

@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TablasComponent } from './tablas.component';
+import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 
 
 
@@ -20,6 +21,9 @@ import { TablasComponent } from './tablas.component';
     MatFormFieldModule,
     MatInputModule,
     SharedModule,
+    MatIconModule,
+    MatButtonModule,
+    DirectivesModule,
     MatIconModule,
     MatButtonModule
   ],

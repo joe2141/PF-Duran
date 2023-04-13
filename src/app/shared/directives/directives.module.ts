@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TituloDirective } from './titulo.directive';
+import { FontSizeDirective } from './font-size.directive';
+
 
 
 @NgModule({
-    declarations: [
-        TituloDirective
-    ],
-    imports: [
-        CommonModule
-    ],
-    exports: [
-        TituloDirective
-    ]
+  declarations: [
+    FontSizeDirective
+  ],
+  imports: [
+    CommonModule
+  ],
+ exports: [
+  FontSizeDirective
+ ]
 })
 export class DirectivesModule { }
