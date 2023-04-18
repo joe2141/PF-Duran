@@ -6,6 +6,8 @@ import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 
 
 
+
+
 export interface Estudiante {
   id: number;
   nombre:string;
@@ -14,6 +16,7 @@ export interface Estudiante {
   curso: string;
   pais: string;
   fecha_registro: Date;
+  acciones:string;
 
 }
 
@@ -33,7 +36,8 @@ export class TablasComponent {
       correo: 'Kilian@mail.com',
       curso: 'Angular',
       pais: 'Argentina',
-      fecha_registro: new Date()
+      fecha_registro: new Date(),
+      acciones:'hola'
     },
     {
       id: 2,
@@ -42,7 +46,8 @@ export class TablasComponent {
       correo: 'Elia@mail.com',
       curso: 'Angular',
       pais: 'Argentina',
-      fecha_registro: new Date()
+      fecha_registro: new Date(),
+      acciones:'hola'
     },
     {
       id: 3,
@@ -51,13 +56,14 @@ export class TablasComponent {
       correo: 'Edurne@mail.com',
       curso: 'Angular',
       pais: 'Argentina',
-      fecha_registro: new Date()
+      fecha_registro: new Date(),
+      acciones:'hola'
     },
   ];
 
   dataSource = new MatTableDataSource(this.estudiantes);
 
-  displayedColumns: string[] = ['id', 'nombreCompleto', 'correo', 'curso', 'pais', 'fecha_registro']
+  displayedColumns: string[] = ['id', 'nombreCompleto', 'correo', 'curso', 'pais', 'fecha_registro', 'acciones']
 
   aplicarFiltros(ev: Event): void {
     const inputValue = (ev.target as HTMLInputElement )?.value;
@@ -83,4 +89,30 @@ export class TablasComponent {
       }
   })
   }
+
+  deleteAlumno(alumnoForDelete: Estudiante): void{
+    if (confirm("Esta seguro de borrar?")) {
+      this.dataSource.data = this.dataSource.data.filter(
+        (alumnoActual) => alumnoActual.id !== alumnoForDelete.id,
+      );
+    }
+  }
+
+actualizarAlumno(alumnoParaEditar: Estudiante): void{
+  const dialog = this.matDialog.open(AbmAlumnosComponent, {
+    data: {
+      alumnoParaEditar
+    }
+  })
+  dialog.afterClosed().subscribe((dataDelAlumnoEditado) => {
+    if (dataDelAlumnoEditado) {
+      this.dataSource.data= this.dataSource.data.map(
+        (alumnoActual) => alumnoActual.id === alumnoParaEditar.id
+        ? ({ ...alumnoActual, ...dataDelAlumnoEditado})
+        : alumnoActual,
+       );
+    }
+  })
+}
+
 }

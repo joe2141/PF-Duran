@@ -38,7 +38,6 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     MatOptionModule,
     MatSelectModule
-
   ],
   exports: [
     TablasComponent
