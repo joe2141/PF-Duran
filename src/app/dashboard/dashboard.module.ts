@@ -8,10 +8,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { TablasModule } from '../pages/tablas/tablas.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormularioModule } from '../pages/formulario/formulario.module';
+import { HoraComponent } from './hora/hora.component';
+
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    HoraComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +24,7 @@ import { FormularioModule } from '../pages/formulario/formulario.module';
     MatButtonModule,
     TablasModule,
     SharedModule,
-    FormularioModule
+    FormularioModule,
   ],
   exports: [
     DashboardComponent
