@@ -110,4 +110,14 @@ actualizarAlumno(alumnoParaEditar: Estudiante): void{
   })
 }
 
+abrirDetalles(alumnoForDelete: Estudiante): void{
+  if (confirm("Esta seguro de borrar?")) {
+    this.dataSource.data = this.dataSource.data.filter(
+      (alumnoActual) => alumnoActual.id !== alumnoForDelete.id,
+    );
+  }
+}
+
+
+
 }
