@@ -53,7 +53,7 @@ export class InscripcionesComponent {
   constructor(private matDialog: MatDialog) {}
 
   abrirABMinscripciones(): void {
-    const dialog = this.matDialog.open(InscripcionesComponent)
+    const dialog = this.matDialog.open(AbmInscripcionesComponent)
 
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {

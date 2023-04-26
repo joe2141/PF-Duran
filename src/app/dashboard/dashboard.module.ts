@@ -11,6 +11,8 @@ import { FormularioModule } from '../pages/formulario/formulario.module';
 import { HoraComponent } from './hora/hora.component';
 import { CursosModule } from '../pages/cursos/cursos.module';
 import { InscripcionesModule } from '../pages/inscripciones/inscripciones.module';
+import { RouterModule } from '@angular/router';
+import { MatListModule } from '@angular/material/list'
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import { InscripcionesModule } from '../pages/inscripciones/inscripciones.module
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
@@ -28,7 +31,10 @@ import { InscripcionesModule } from '../pages/inscripciones/inscripciones.module
     SharedModule,
     FormularioModule,
     CursosModule,
-    InscripcionesModule
+    InscripcionesModule,
+    MatListModule
+
+
   ],
   exports: [
     DashboardComponent,

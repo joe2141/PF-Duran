@@ -90,5 +90,9 @@ export class CursosComponent {
       }
     })
   }
+
+  abrirDetallesDelCurso(){}
+
+
 }
 

@@ -56,7 +56,8 @@
       <td>
         <mat-form-field class="width">
           <mat-label>Selecciona tu curso </mat-label>
-          <mat-select disableRipple
+          <mat-select
+          multiple
           [ngClass]="{ 'is-invalid': nombreControl.invalid && nombreControl.touched}"
             [formControl]="cursoControl"
             class="form-control"
