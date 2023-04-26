@@ -1,10 +1,18 @@
 <mat-drawer-container class="example-container" autosize>
   <!--Siderbar-->
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
+    <img class="photo" mat-card-sm-image src="https://uploads.turbologo.com/uploads/design/hq_preview_image/472636/draw_svg20210830-31526-9wr9ip.svg.png" >
+    <p></p>
+    <button (click)="showFiller = !showFiller" color="primary" class="boton" mat-raised-button>
+      Alumnos
+    </button>
+    <p></p>
+    <button (click)="showFiller = !showFiller" color="primary" class="boton" mat-raised-button>
+      Cursos
+    </button>
+    <p></p>
+    <button (click)="showFiller = !showFiller" color="primary" class="boton" mat-raised-button>
+      Inscripciones
     </button>
   </mat-drawer>
 
@@ -35,7 +43,9 @@
 
       <!-- <app-formulario></app-formulario> -->
 
-       <app-tablas></app-tablas>
+      <app-cursos></app-cursos>
+
+       <!-- <app-tablas></app-tablas> -->
 
     </main>
   </div>

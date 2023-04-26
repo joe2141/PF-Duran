@@ -9,6 +9,7 @@ import { TablasModule } from '../pages/tablas/tablas.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormularioModule } from '../pages/formulario/formulario.module';
 import { HoraComponent } from './hora/hora.component';
+import { CursosModule } from '../pages/cursos/cursos.module';
 
 
 @NgModule({
@@ -25,9 +26,10 @@ import { HoraComponent } from './hora/hora.component';
     TablasModule,
     SharedModule,
     FormularioModule,
+    CursosModule,
   ],
   exports: [
-    DashboardComponent
+    DashboardComponent,
   ]
 })
 export class DashboardModule { }

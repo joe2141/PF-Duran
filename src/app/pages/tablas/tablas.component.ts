@@ -3,11 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 
-
-
-
-
-
 export interface Estudiante {
   id: number;
   nombre:string;
