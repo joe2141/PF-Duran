@@ -9,6 +9,10 @@ import { TablasModule } from '../pages/tablas/tablas.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormularioModule } from '../pages/formulario/formulario.module';
 import { HoraComponent } from './hora/hora.component';
+import { CursosModule } from '../pages/cursos/cursos.module';
+import { InscripcionesModule } from '../pages/inscripciones/inscripciones.module';
+import { RouterModule } from '@angular/router';
+import { MatListModule } from '@angular/material/list'
 
 
 @NgModule({
@@ -18,6 +22,7 @@ import { HoraComponent } from './hora/hora.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
@@ -25,9 +30,14 @@ import { HoraComponent } from './hora/hora.component';
     TablasModule,
     SharedModule,
     FormularioModule,
+    CursosModule,
+    InscripcionesModule,
+    MatListModule
+
+
   ],
   exports: [
-    DashboardComponent
+    DashboardComponent,
   ]
 })
 export class DashboardModule { }
