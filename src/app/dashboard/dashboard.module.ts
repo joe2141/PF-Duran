@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { FormularioModule } from '../pages/formulario/formulario.module';
 import { HoraComponent } from './hora/hora.component';
 import { CursosModule } from '../pages/cursos/cursos.module';
+import { InscripcionesModule } from '../pages/inscripciones/inscripciones.module';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { CursosModule } from '../pages/cursos/cursos.module';
     SharedModule,
     FormularioModule,
     CursosModule,
+    InscripcionesModule
   ],
   exports: [
     DashboardComponent,

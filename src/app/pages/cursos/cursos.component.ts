@@ -73,25 +73,22 @@ export class CursosComponent {
       );
     }
   }
-  
 
-actualizarCursos(cursosParaEditar: Curso): void{
-  const dialog = this.matDialog.open(AbmCursosComponent, {
-    data: {
-      cursosParaEditar
-    }
-  })
-  dialog.afterClosed().subscribe((dataDelCursoEditado) => {
-    if (dataDelCursoEditado) {
-      this.dataSource.data= this.dataSource.data.map(
-        (cursoActual) => cursoActual.id === cursosParaEditar.id
-        ? ({ ...cursoActual, ...dataDelCursoEditado})
-        : cursoActual,
-       );
-    }
-  })
-}
-
-
+  actualizarCursos(cursoParaEditar: Curso): void {
+    const dialog = this.matDialog.open(AbmCursosComponent, {
+      data: {
+        cursoParaEditar
+      }
+    })
+    dialog.afterClosed().subscribe((dataDeCursoEditado) => {
+      if (dataDeCursoEditado) {
+        this.dataSource.data = this.dataSource.data.map(
+          (cursoActual) => cursoActual.id === cursoParaEditar.id
+          ? ({ ...cursoActual, ...dataDeCursoEditado})
+          : cursoActual,
+        );
+      }
+    })
+  }
 }
 
