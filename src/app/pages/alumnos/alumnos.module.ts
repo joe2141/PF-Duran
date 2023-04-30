@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { TablasComponent } from './tablas.component';
+import { AlumnosComponent } from './alumnos.component';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -20,7 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
-    TablasComponent,
+    AlumnosComponent,
     AbmAlumnosComponent
   ],
   imports: [
@@ -40,9 +40,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule
   ],
   exports: [
-    TablasComponent
+    AlumnosComponent
 
 
   ]
 })
-export class TablasModule { }
+export class AlumnosModule { }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { TablasComponent } from './pages/tablas/tablas.component';
+import { AlumnosComponent } from './pages/alumnos/alumnos.component';
 import { CursosComponent } from './pages/cursos/cursos.component';
 import { InscripcionesComponent } from './pages/inscripciones/inscripciones.component';
 
@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: 'estudiantes',
-        component: TablasComponent
+        component: AlumnosComponent
       },
       {
         path: 'cursos',

@@ -16,11 +16,11 @@ export interface Estudiante {
 }
 
 @Component({
-  selector: 'app-tablas',
-  templateUrl: './tablas.component.html',
-  styleUrls: ['./tablas.component.scss']
+  selector: 'app-alumnos',
+  templateUrl: './alumnos.component.html',
+  styleUrls: ['./alumnos.component.scss']
 })
-export class TablasComponent {
+export class AlumnosComponent {
 
 
   estudiantes: Estudiante[] = [
