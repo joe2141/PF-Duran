@@ -6,6 +6,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
+import { CursosModule } from './pages/cursos/cursos.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AppRoutingModule } from './app-routing.module';
     DashboardModule,
     BrowserAnimationsModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CursosModule
 
   ],
   providers: [],
