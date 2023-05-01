@@ -1,19 +1,57 @@
 <mat-card class="example-card">
   <mat-card-header>
     <mat-card-title>Detalles Alumnos</mat-card-title>
+    <img class="photo_perfil" mat-card-sm-image
+      src="https://ionicframework.com/docs/img/demos/avatar.svg">
     <mat-card-subtitle class="titulo_margin">{{alumno?.nombre}} {{alumno?.apellido}}</mat-card-subtitle>
-    <img class="photo_perfil" mat-card-sm-image src="https://imageio.forbes.com/specials-images/imageserve/5c76b7d331358e35dd2773a9/0x0.jpg?format=jpg&crop=4401,4401,x0,y0,safe&height=416&width=416&fit=bounds" >
   </mat-card-header>
   <mat-card-content>
-    <mat-card-subtitle>Cursos Inscritos</mat-card-subtitle>
-    <p>{{alumno?.curso}}</p>
+    <mat-card-subtitle>Correo</mat-card-subtitle>
+    <p>{{alumno?.correo}}</p>
+    <mat-card-subtitle>Pais</mat-card-subtitle>
+    <p>{{alumno?.pais}}</p>
+    <mat-card-subtitle>Fecha Inscripcion</mat-card-subtitle>
+    <p>{{alumno?.fecha_registro}}</p>
   </mat-card-content>
+</mat-card>
 
-  <mat-card-actions>
-    <button mat-icon-button class="button_margin">
-      <mat-icon >person_off</mat-icon>
-    </button>
-  </mat-card-actions>
-<br>
+<mat-form-field>
+  <mat-label>Buscar</mat-label>
+  <input matInput (keyup)="aplicarFiltros($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
 
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
 
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef appFontSize>Id</th>
+      <td mat-cell *matCellDef="let inscripcion"> {{inscripcion.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="curso">
+      <th mat-header-cell *matHeaderCellDef appFontSize> Curso </th>
+      <td mat-cell *matCellDef="let inscripcion">
+        {{inscripcion.curso }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha_inicio">
+      <th mat-header-cell *matHeaderCellDef appFontSize> Fecha inicio </th>
+      <td mat-cell *matCellDef="let inscripcion">
+        {{inscripcion.fecha_inicio}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="desuscribir">desuscribir
+      <th mat-header-cell *matHeaderCellDef appFontSize> Desuscribir </th>
+      <td mat-cell *matCellDef="let inscripcion">
+        <button mat-icon-button (click)="desuscribirAlumno(inscripcion)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

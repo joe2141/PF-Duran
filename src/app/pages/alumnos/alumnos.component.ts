@@ -16,10 +16,10 @@ export class AlumnosComponent {
 
   dataSource = new MatTableDataSource<Alumno>();
 
-  displayedColumns: string[] = ['id', 'nombreCompleto', 'correo', 'curso', 'pais', 'fecha_registro', 'acciones']
+  displayedColumns: string[] = ['id', 'nombreCompleto', 'correo', 'pais', 'fecha_registro', 'acciones']
 
   aplicarFiltros(ev: Event): void {
-    const inputValue = (ev.target as HTMLInputElement )?.value;
+    const inputValue = (ev.target as HTMLInputElement)?.value;
     this.dataSource.filter = inputValue?.trim()?.toLowerCase();
   }
 
@@ -27,22 +27,19 @@ export class AlumnosComponent {
     private router: Router,
     private activatesRoute: ActivatedRoute,
     private alumnosService: AlumnosService
-    ) {
+  ) {
 
-      this.alumnosService.obtenerAlumnos()
+    this.alumnosService.obtenerAlumnos()
       .subscribe((alumnos) => {
         this.dataSource.data = alumnos;
       })
-    }
-
-
-  irAlDetalle(alumnoId: number): void{
-    this.router.navigate([alumnoId], {
-relativeTo: this.activatesRoute,
-    });
   }
 
-
+  irAlDetalle(alumnoId: number): void {
+    this.router.navigate([alumnoId], {
+      relativeTo: this.activatesRoute,
+    });
+  }
 
   abrirABMalumnos(): void {
     const dialog = this.matDialog.open(AbmAlumnosComponent)
@@ -57,10 +54,10 @@ relativeTo: this.activatesRoute,
         }
         ];
       }
-  })
+    })
   }
 
-  deleteAlumno(alumnoForDelete: Alumno): void{
+  deleteAlumno(alumnoForDelete: Alumno): void {
     if (confirm("Esta seguro de borrar?")) {
       this.dataSource.data = this.dataSource.data.filter(
         (alumnoActual) => alumnoActual.id !== alumnoForDelete.id,
@@ -68,21 +65,21 @@ relativeTo: this.activatesRoute,
     }
   }
 
-actualizarAlumno(alumnoParaEditar: Alumno): void{
-  const dialog = this.matDialog.open(AbmAlumnosComponent, {
-    data: {
-      alumnoParaEditar
-    }
-  })
-  dialog.afterClosed().subscribe((dataDelAlumnoEditado) => {
-    if (dataDelAlumnoEditado) {
-      this.dataSource.data= this.dataSource.data.map(
-        (alumnoActual) => alumnoActual.id === alumnoParaEditar.id
-        ? ({ ...alumnoActual, ...dataDelAlumnoEditado})
-        : alumnoActual,
-       );
-    }
-  })
-}
+  actualizarAlumno(alumnoParaEditar: Alumno): void {
+    const dialog = this.matDialog.open(AbmAlumnosComponent, {
+      data: {
+        alumnoParaEditar
+      }
+    })
+    dialog.afterClosed().subscribe((dataDelAlumnoEditado) => {
+      if (dataDelAlumnoEditado) {
+        this.dataSource.data = this.dataSource.data.map(
+          (alumnoActual) => alumnoActual.id === alumnoParaEditar.id
+            ? ({ ...alumnoActual, ...dataDelAlumnoEditado })
+            : alumnoActual,
+        );
+      }
+    })
+  }
 
 }
