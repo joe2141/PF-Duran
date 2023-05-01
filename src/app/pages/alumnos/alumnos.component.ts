@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
+import { Route, Router } from '@angular/router';
 
 export interface Estudiante {
   id: number;
@@ -65,7 +66,7 @@ export class AlumnosComponent {
     this.dataSource.filter = inputValue?.trim()?.toLowerCase();
   }
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private matDialog: MatDialog, private router: Router ) {}
 
 
 
@@ -110,12 +111,8 @@ actualizarAlumno(alumnoParaEditar: Estudiante): void{
   })
 }
 
-abrirDetalles(alumnoForDelete: Estudiante): void{
-  if (confirm("Esta seguro de borrar?")) {
-    this.dataSource.data = this.dataSource.data.filter(
-      (alumnoActual) => alumnoActual.id !== alumnoForDelete.id,
-    );
-  }
+irAlDetalle(alumnoId: number): void{
+  this.router.navigate(['dashboard','estudiantes',alumnoId])
 }
 
 

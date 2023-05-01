@@ -55,10 +55,14 @@ export class CursosComponent implements OnInit {
   }
 
   eliminarCurso(curso: Curso): void {
+    if (confirm('Esta Seguro?'))
  this.cursosService.eliminarCurso(curso.id);
-
   }
-  abrirDetallesCurso(): void {}
+
+
+  abrirDetallesCurso(): void {
+    
+  }
 
   aplicarFiltros(ev: Event): void {
     const inputValue = (ev.target as HTMLInputElement)?.value;
