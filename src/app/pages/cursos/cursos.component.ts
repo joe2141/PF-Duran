@@ -1,98 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CursosService } from './Componentes/services/cursos.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
+import { Curso } from './Componentes/models/index';
+import { Router, ActivatedRoute } from '@angular/router';
 
-export interface Curso {
-  id: number;
-  nombre:string;
-  fecha_registro: Date;
-  acciones:string;
-
-}
 
 @Component({
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
-  styleUrls: ['./cursos.component.scss']
+  styleUrls: ['./cursos.component.scss'],
 })
-export class CursosComponent {
+export class CursosComponent implements OnInit {
+  dataSource = new MatTableDataSource();
+  displayedColumns = ['id', 'nombre', 'fecha_inicio', 'fecha_fin', 'acciones'];
 
-  cursos: Curso[] = [
-    {
-      id:1,
-      nombre: 'Angular',
-      fecha_registro: new Date(),
-      acciones:'hola'
-    },
-    {
-      id: 2,
-      nombre: 'React',
-      fecha_registro: new Date(),
-      acciones:'hola'
-    },
-    {
-      id: 3,
-      nombre: 'Asado Profecional',
-      fecha_registro: new Date(),
-      acciones:'hola'
-    },
-  ];
+  constructor(
+    private router: Router,
+    private activatesRoute: ActivatedRoute,
+    private cursosService: CursosService,
+    private dialog: MatDialog
+  ) {}
 
-  dataSource = new MatTableDataSource(this.cursos);
+  abrirDetallesCurso(cursoId: number): void {
+    this.router.navigate([cursoId], {
+      relativeTo: this.activatesRoute
+    })
 
-  displayedColumns: string[] = ['id', 'nombre', 'fecha_registro', 'acciones']
+  }
+
+  ngOnInit(): void {
+    this.cursosService.obtenerCursos().subscribe({
+      next: (cursos) => {
+        this.dataSource.data = cursos;
+      },
+    });
+  }
+
+  crearCurso(): void {
+    const dialog = this.dialog.open(AbmCursosComponent);
+
+    dialog.afterClosed()
+    .subscribe((formValue) => {
+    if (formValue) {
+      this.cursosService.crearCurso(formValue)
+    }
+    });
+  }
+
+  editarCurso(curso: Curso): void {
+    const dialog = this.dialog.open(AbmCursosComponent, {
+      data: {
+        curso,
+      }
+    })
+
+    dialog.afterClosed()
+    .subscribe((formValue) => {
+      if (formValue) {
+        this.cursosService.editarCurso(curso.id, formValue);
+      }
+    })
+  }
+
+  eliminarCurso(curso: Curso): void {
+    if (confirm('Esta Seguro?'))
+ this.cursosService.eliminarCurso(curso.id);
+  }
 
   aplicarFiltros(ev: Event): void {
-    const inputValue = (ev.target as HTMLInputElement )?.value;
+    const inputValue = (ev.target as HTMLInputElement)?.value;
     this.dataSource.filter = inputValue?.trim()?.toLowerCase();
   }
-
-  constructor(private matDialog: MatDialog) {}
-
-  abrirABMcursos(): void {
-    const dialog = this.matDialog.open(AbmCursosComponent)
-
-    dialog.afterClosed().subscribe((valor) => {
-      if (valor) {
-        this.dataSource.data = [...this.dataSource.data,
-        {
-          ...valor,
-          fecha_registro: new Date(),
-          id: this.dataSource.data.length + 1,
-        }
-        ];
-      }
-  })
-  }
-
-  deleteCursos(cursosForDelete: Curso): void{
-    if (confirm("Esta seguro de borrar?")) {
-      this.dataSource.data = this.dataSource.data.filter(
-        (cursoActual) => cursoActual.id !== cursosForDelete.id,
-      );
-    }
-  }
-
-  actualizarCursos(cursoParaEditar: Curso): void {
-    const dialog = this.matDialog.open(AbmCursosComponent, {
-      data: {
-        cursoParaEditar
-      }
-    })
-    dialog.afterClosed().subscribe((dataDeCursoEditado) => {
-      if (dataDeCursoEditado) {
-        this.dataSource.data = this.dataSource.data.map(
-          (cursoActual) => cursoActual.id === cursoParaEditar.id
-          ? ({ ...cursoActual, ...dataDeCursoEditado})
-          : cursoActual,
-        );
-      }
-    })
-  }
-
-  abrirDetallesDelCurso(){}
-
-
 }
-

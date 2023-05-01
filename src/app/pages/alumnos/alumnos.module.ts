@@ -6,13 +6,16 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { TablasComponent } from './tablas.component';
+import { AlumnosComponent } from './alumnos.component';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { DetallesAlumnosComponent } from './detalles-alumnos/detalles-alumnos.component';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 
@@ -20,8 +23,9 @@ import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
-    TablasComponent,
-    AbmAlumnosComponent
+    AlumnosComponent,
+    AbmAlumnosComponent,
+    DetallesAlumnosComponent
   ],
   imports: [
     CommonModule,
@@ -37,12 +41,13 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     ReactiveFormsModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule
   ],
   exports: [
-    TablasComponent
+    AlumnosComponent
 
 
   ]
 })
-export class TablasModule { }
+export class AlumnosModule { }
