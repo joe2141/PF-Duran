@@ -2,19 +2,10 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlumnosService } from './componentes/services/alumnos.service';
+import { Alumno } from '../alumnos/componentes/models/index';
 
-export interface Estudiante {
-  id: number;
-  nombre:string;
-  apellido: string;
-  correo: string;
-  curso: string;
-  pais: string;
-  fecha_registro: Date;
-  acciones:string;
-
-}
 
 @Component({
   selector: 'app-alumnos',
@@ -23,41 +14,7 @@ export interface Estudiante {
 })
 export class AlumnosComponent {
 
-
-  estudiantes: Estudiante[] = [
-    {
-      id:1,
-      nombre: 'Kilian',
-      apellido: 'Diez',
-      correo: 'Kilian@mail.com',
-      curso: 'Angular',
-      pais: 'Argentina',
-      fecha_registro: new Date(),
-      acciones:'hola'
-    },
-    {
-      id: 2,
-      nombre: 'Elia',
-      apellido: 'Paz',
-      correo: 'Elia@mail.com',
-      curso: 'Angular',
-      pais: 'Argentina',
-      fecha_registro: new Date(),
-      acciones:'hola'
-    },
-    {
-      id: 3,
-      nombre: 'Edurne',
-      apellido: 'Carballo',
-      correo: 'Edurne@mail.com',
-      curso: 'Angular',
-      pais: 'Argentina',
-      fecha_registro: new Date(),
-      acciones:'hola'
-    },
-  ];
-
-  dataSource = new MatTableDataSource(this.estudiantes);
+  dataSource = new MatTableDataSource<Alumno>();
 
   displayedColumns: string[] = ['id', 'nombreCompleto', 'correo', 'curso', 'pais', 'fecha_registro', 'acciones']
 
@@ -69,7 +26,14 @@ export class AlumnosComponent {
   constructor(private matDialog: MatDialog,
     private router: Router,
     private activatesRoute: ActivatedRoute,
-    ) {}
+    private alumnosService: AlumnosService
+    ) {
+
+      this.alumnosService.obtenerAlumnos()
+      .subscribe((alumnos) => {
+        this.dataSource.data = alumnos;
+      })
+    }
 
 
   irAlDetalle(alumnoId: number): void{
@@ -96,7 +60,7 @@ relativeTo: this.activatesRoute,
   })
   }
 
-  deleteAlumno(alumnoForDelete: Estudiante): void{
+  deleteAlumno(alumnoForDelete: Alumno): void{
     if (confirm("Esta seguro de borrar?")) {
       this.dataSource.data = this.dataSource.data.filter(
         (alumnoActual) => alumnoActual.id !== alumnoForDelete.id,
@@ -104,7 +68,7 @@ relativeTo: this.activatesRoute,
     }
   }
 
-actualizarAlumno(alumnoParaEditar: Estudiante): void{
+actualizarAlumno(alumnoParaEditar: Alumno): void{
   const dialog = this.matDialog.open(AbmAlumnosComponent, {
     data: {
       alumnoParaEditar
