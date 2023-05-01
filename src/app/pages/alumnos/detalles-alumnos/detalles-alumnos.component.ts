@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Pipe } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlumnosService } from '../componentes/services/alumnos.service';
 import { Alumno } from '../componentes/models/index';
@@ -30,6 +30,6 @@ this.alumnosServices.obtenerAlumnoPorId(parseInt(this.activatedRoute.snapshot.pa
     this.destroyed$.next(true)
   }
 
-  
+
 
 }

@@ -49,8 +49,6 @@ getCursoById(cursoId: number): Observable<Curso | undefined> {
   )
 }
 
-
-
   crearCurso(payload: CrearCursoPayload): Observable<Curso[]> {
     this.cursos$.pipe(take(1)).subscribe({
       next: (cursos) => {

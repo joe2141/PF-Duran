@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { Curso } from './Componentes/models/index';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -16,9 +17,18 @@ export class CursosComponent implements OnInit {
   displayedColumns = ['id', 'nombre', 'fecha_inicio', 'fecha_fin', 'acciones'];
 
   constructor(
+    private router: Router,
+    private activatesRoute: ActivatedRoute,
     private cursosService: CursosService,
     private dialog: MatDialog
   ) {}
+
+  abrirDetallesCurso(cursoId: number): void {
+    this.router.navigate([cursoId], {
+      relativeTo: this.activatesRoute
+    })
+
+  }
 
   ngOnInit(): void {
     this.cursosService.obtenerCursos().subscribe({
@@ -57,11 +67,6 @@ export class CursosComponent implements OnInit {
   eliminarCurso(curso: Curso): void {
     if (confirm('Esta Seguro?'))
  this.cursosService.eliminarCurso(curso.id);
-  }
-
-
-  abrirDetallesCurso(): void {
-    
   }
 
   aplicarFiltros(ev: Event): void {

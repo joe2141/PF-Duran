@@ -14,13 +14,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { CursosComponent } from './cursos.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DetallesCursosComponent } from './detalles-cursos/detalles-cursos/detalles-cursos.component';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 
 @NgModule({
   declarations: [
     CursosComponent,
-    AbmCursosComponent
+    AbmCursosComponent,
+    DetallesCursosComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +42,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatOptionModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule
   ],exports: [
     CursosComponent
   ]
