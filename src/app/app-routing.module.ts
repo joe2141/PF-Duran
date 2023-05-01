@@ -5,38 +5,44 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AlumnosComponent } from './pages/alumnos/alumnos.component';
 import { CursosComponent } from './pages/cursos/cursos.component';
 import { InscripcionesComponent } from './pages/inscripciones/inscripciones.component';
+import { DetallesAlumnosComponent } from './pages/alumnos/detalles-alumnos/detalles-alumnos.component';
 
 const routes: Routes = [
   {
-    path:'dashboard',
+    path: 'dashboard',
     component: DashboardComponent,
     children: [
       {
         path: 'estudiantes',
-        component: AlumnosComponent
+        children: [
+          {
+            path: '',
+            component: AlumnosComponent,
+          },
+          {
+            path: ':id',
+            component: DetallesAlumnosComponent,
+          },
+        ],
       },
       {
         path: 'cursos',
-        component: CursosComponent
+        component: CursosComponent,
       },
       {
         path: 'inscripciones',
-        component: InscripcionesComponent
+        component: InscripcionesComponent,
       },
-    ]
+    ],
   },
   {
     path: '**',
-    redirectTo:  'dashboard'
-  }
-]
+    redirectTo: 'dashboard',
+  },
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports:[
-    RouterModule
-  ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 export interface Estudiante {
   id: number;
@@ -66,7 +66,17 @@ export class AlumnosComponent {
     this.dataSource.filter = inputValue?.trim()?.toLowerCase();
   }
 
-  constructor(private matDialog: MatDialog, private router: Router ) {}
+  constructor(private matDialog: MatDialog,
+    private router: Router,
+    private activatesRoute: ActivatedRoute,
+    ) {}
+
+
+  irAlDetalle(alumnoId: number): void{
+    this.router.navigate([alumnoId], {
+relativeTo: this.activatesRoute,
+    });
+  }
 
 
 
@@ -110,11 +120,5 @@ actualizarAlumno(alumnoParaEditar: Estudiante): void{
     }
   })
 }
-
-irAlDetalle(alumnoId: number): void{
-  this.router.navigate(['dashboard','estudiantes',alumnoId])
-}
-
-
 
 }

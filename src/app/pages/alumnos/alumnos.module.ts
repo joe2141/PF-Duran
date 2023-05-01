@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { DetallesAlumnosComponent } from './detalles-alumnos/detalles-alumnos.component';
 
 
 
@@ -21,7 +22,8 @@ import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AlumnosComponent,
-    AbmAlumnosComponent
+    AbmAlumnosComponent,
+    DetallesAlumnosComponent
   ],
   imports: [
     CommonModule,
