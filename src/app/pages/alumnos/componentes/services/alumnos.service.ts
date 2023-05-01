@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Alumno } from '../models/index';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -52,4 +52,5 @@ export class AlumnosService {
       map((alumnos) => alumnos.find((a) => a.id === id))
     )
   }
+
 }

@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AlumnosService } from '../componentes/services/alumnos.service';
 import { Alumno } from '../componentes/models/index';
 import { Subject, takeUntil } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-detalles-alumnos',
@@ -14,6 +16,7 @@ export class DetallesAlumnosComponent implements OnDestroy {
 alumno: Alumno | undefined ;
 
 private destroyed$ = new Subject()
+dataSource = new MatTableDataSource<Alumno>();
 
  constructor(
   private activatedRoute: ActivatedRoute,
@@ -27,5 +30,6 @@ this.alumnosServices.obtenerAlumnoPorId(parseInt(this.activatedRoute.snapshot.pa
     this.destroyed$.next(true)
   }
 
+  
 
 }

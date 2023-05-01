@@ -1,1 +1,19 @@
-<p>{{alumno?.nombre}}</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Detalles Alumnos</mat-card-title>
+    <mat-card-subtitle class="titulo_margin">{{alumno?.nombre}} {{alumno?.apellido}}</mat-card-subtitle>
+    <img class="photo_perfil" mat-card-sm-image src="https://imageio.forbes.com/specials-images/imageserve/5c76b7d331358e35dd2773a9/0x0.jpg?format=jpg&crop=4401,4401,x0,y0,safe&height=416&width=416&fit=bounds" >
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card-subtitle>Cursos Inscritos</mat-card-subtitle>
+    <p>{{alumno?.curso}}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-icon-button class="button_margin">
+      <mat-icon >person_off</mat-icon>
+    </button>
+  </mat-card-actions>
+<br>
+
+
