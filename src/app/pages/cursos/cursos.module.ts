@@ -9,10 +9,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { CursosComponent } from './cursos.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { CursosComponent } from './cursos.component';
     ReactiveFormsModule,
     MatOptionModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],exports: [
     CursosComponent
   ]

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CursosService } from './Componentes/services/cursos.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { Dialog } from '@angular/cdk/dialog';
+import { CrearCursoPayload } from './Componentes/models/index';
+import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 
 @Component({
   selector: 'app-cursos',
@@ -16,7 +20,7 @@ export class CursosComponent implements OnInit {
   'fecha_fin',
   'acciones'];
 
-  constructor(private cursosService: CursosService) {}
+  constructor(private cursosService: CursosService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.cursosService.obtenerCursos().subscribe({
@@ -26,7 +30,12 @@ export class CursosComponent implements OnInit {
     });
   }
 
-  agregarCurso(): void {}
+  crearCurso(): void {
+    this.dialog.open(AbmCursosComponent)
+  }
+
+
+
   actualizarCurso(): void {}
   deleteCurso(): void {}
   abrirDetallesCurso(): void {}

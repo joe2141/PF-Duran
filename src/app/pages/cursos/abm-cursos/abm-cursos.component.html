@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>ABM Cursos</h1>
 <div mat-dialog-content>
-  <form class="formulario-alumnos">
+  <form class="formulario-cursos">
     <table class="width" cellspacing="0">
       <td>
           <mat-form-field class="width">
@@ -18,6 +18,24 @@
           </mat-form-field>
         </td>
     </table>
+    <div class="col-6">
+      <mat-form-field >
+        <mat-label>Fecha de Inicio</mat-label>
+          <input [formControl]="fechaInicioControl" matInput [matDatepicker]="fechaInicioPicker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="fechaInicioPicker"></mat-datepicker-toggle>
+          <mat-datepicker #fechaInicioPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Fecha de Fin</mat-label>
+          <input [formControl]="fechaFinControl" matInput [matDatepicker]="fechaFinalPicker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="fechaFinalPicker"></mat-datepicker-toggle>
+          <mat-datepicker #fechaFinalPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
   </form>
 
   <div mat-dialog-action >
