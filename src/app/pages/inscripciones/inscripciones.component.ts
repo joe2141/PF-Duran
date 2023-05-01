@@ -1,17 +1,8 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones.component';
-import { Dialog } from '@angular/cdk/dialog';
-
-
-export interface Inscripcion {
-  id: number;
-  nombre:string;
-  fecha_registro: Date;
-  acciones:string;
-
-}
+import { Inscripciones } from './componentes/models';
+import { InscripcionesService } from './componentes/services/cursos.service';
 
 @Component({
   selector: 'app-inscripciones',
@@ -19,83 +10,21 @@ export interface Inscripcion {
   styleUrls: ['./inscripciones.component.scss']
 })
 export class InscripcionesComponent {
+  dataSource = new MatTableDataSource<Inscripciones>();
 
-  inscripciones: Inscripcion[] = [
-    {
-      id:1,
-      nombre: 'Angular',
-      fecha_registro: new Date(),
-      acciones:'hola'
-    },
-    {
-      id: 2,
-      nombre: 'React',
-      fecha_registro: new Date(),
-      acciones:'hola'
-    },
-    {
-      id: 3,
-      nombre: 'Asado Profecional',
-      fecha_registro: new Date(),
-      acciones:'hola'
-    },
-  ];
-
-  dataSource = new MatTableDataSource(this.inscripciones)
-
-  displayedColumns: string[] = ['id', 'nombre', 'fecha_registro', 'acciones']
+  displayedColumns: string[] = ['id', 'alumno', 'curso', 'fecha_inicio']
 
   aplicarFiltros(ev: Event): void {
-    const inputValue = (ev.target as HTMLInputElement )?.value;
+    const inputValue = (ev.target as HTMLInputElement)?.value;
     this.dataSource.filter = inputValue?.trim()?.toLowerCase();
   }
 
-  constructor(private matDialog: MatDialog) {}
-
-  abrirABMinscripciones(): void {
-    const dialog = this.matDialog.open(AbmInscripcionesComponent)
-
-    dialog.afterClosed().subscribe((valor) => {
-      if (valor) {
-        this.dataSource.data = [...this.dataSource.data,
-        {
-          ...valor,
-          fecha_registro: new Date(),
-          id: this.dataSource.data.length + 1,
-        }
-        ];
-      }
-  })
+  constructor(private matDialog: MatDialog,
+    private inscripcionesService: InscripcionesService) {
+      this.inscripcionesService.obtenerInscripciones()
+      .subscribe((inscripciones) => {
+        this.dataSource.data = inscripciones;
+      })
   }
-
-  deleteInscripciones(inscripcionForDelete: Inscripcion): void{
-    if (confirm("Esta seguro de borrar?")) {
-      this.dataSource.data = this.dataSource.data.filter(
-        (inscripcionActual) => inscripcionActual.id !== inscripcionForDelete.id,
-      );
-    }
-  }
-
-  actualizarInscripciones(inscripcionesParaEditar: Inscripcion): void {
-    const dialog = this.matDialog.open(AbmInscripcionesComponent, {
-      data: {
-        inscripcionesParaEditar
-      }
-    })
-    dialog.afterClosed().subscribe((dataDeInspecionesEditado) => {
-      if (dataDeInspecionesEditado) {
-        this.dataSource.data = this.dataSource.data.map(
-          (inscripcionActual) => inscripcionActual.id === inscripcionesParaEditar.id
-          ? ({ ...inscripcionActual, ...dataDeInspecionesEditado})
-          : inscripcionActual,
-        );
-      }
-    })
-
-  }
-
-
-
-
 
 }

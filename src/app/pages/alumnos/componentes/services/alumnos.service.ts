@@ -9,34 +9,58 @@ export class AlumnosService {
 
   private estudiantes$ = new BehaviorSubject<Alumno[]>([
     {
-      id:1,
-      nombre: 'Kilian',
-      apellido: 'Diez',
-      correo: 'Kilian@mail.com',
-      curso: 'Angular',
+      id: 1,
+      nombre: 'Victorine',
+      apellido: 'Vilmantė',
+      correo: 'victorine@mail.com',
       pais: 'Argentina',
       fecha_registro: new Date(),
-      acciones:'hola'
+      acciones: 'hola'
     },
     {
       id: 2,
-      nombre: 'Elia',
-      apellido: 'Paz',
-      correo: 'Elia@mail.com',
-      curso: 'Angular',
-      pais: 'Argentina',
+      nombre: 'Alhaji',
+      apellido: 'Alia',
+      correo: ' alhajialia@mail.com',
+      pais: 'India',
       fecha_registro: new Date(),
-      acciones:'hola'
+      acciones: 'hola'
     },
     {
       id: 3,
       nombre: 'Edurne',
       apellido: 'Carballo',
-      correo: 'Edurne@mail.com',
-      curso: 'Angular',
-      pais: 'Argentina',
+      correo: 'edurne@mail.com',
+      pais: 'Peru',
       fecha_registro: new Date(),
-      acciones:'hola'
+      acciones: 'hola'
+    },
+    {
+      id: 4,
+      nombre: 'Klava',
+      apellido: 'Franck',
+      correo: 'klavaf@mail.com',
+      pais: 'Peru',
+      fecha_registro: new Date(),
+      acciones: 'hola'
+    },
+    {
+      id: 5,
+      nombre: 'Geetha',
+      apellido: 'Karan',
+      correo: 'gee_karan@mail.com',
+      pais: 'Peru',
+      fecha_registro: new Date(),
+      acciones: 'hola'
+    },
+    {
+      id: 6,
+      nombre: 'Dayton',
+      apellido: 'Geboom',
+      correo: 'daytong@mail.com',
+      pais: 'Peru',
+      fecha_registro: new Date(),
+      acciones: 'hola'
     },
   ])
 
