@@ -38,10 +38,10 @@
 <ng-container matColumnDef="acciones" >acciones
   <th mat-header-cell *matHeaderCellDef appFontSize> acciones </th>
   <td mat-cell *matCellDef="let curso">
-    <button (click)="actualizarCurso()" mat-icon-button >
+    <button (click)="editarCurso(curso)" mat-icon-button >
       <mat-icon >edit</mat-icon>
     </button>
-    <button  mat-icon-button (click)="deleteCurso()">
+    <button  mat-icon-button (click)="eliminarCurso(curso)">
       <mat-icon >delete</mat-icon>
     </button>
     <button  mat-icon-button (click)="abrirDetallesCurso()">

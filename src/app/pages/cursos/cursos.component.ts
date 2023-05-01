@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CursosService } from './Componentes/services/cursos.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { Dialog } from '@angular/cdk/dialog';
-import { CrearCursoPayload } from './Componentes/models/index';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
+import { Curso } from './Componentes/models/index';
+
 
 @Component({
   selector: 'app-cursos',
@@ -13,14 +13,12 @@ import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 })
 export class CursosComponent implements OnInit {
   dataSource = new MatTableDataSource();
-  displayedColumns = [
-  'id',
-  'nombre',
-  'fecha_inicio',
-  'fecha_fin',
-  'acciones'];
+  displayedColumns = ['id', 'nombre', 'fecha_inicio', 'fecha_fin', 'acciones'];
 
-  constructor(private cursosService: CursosService, private dialog: MatDialog) {}
+  constructor(
+    private cursosService: CursosService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.cursosService.obtenerCursos().subscribe({
@@ -31,13 +29,35 @@ export class CursosComponent implements OnInit {
   }
 
   crearCurso(): void {
-    this.dialog.open(AbmCursosComponent)
+    const dialog = this.dialog.open(AbmCursosComponent);
+
+    dialog.afterClosed()
+    .subscribe((formValue) => {
+    if (formValue) {
+      this.cursosService.crearCurso(formValue)
+    }
+    });
   }
 
+  editarCurso(curso: Curso): void {
+    const dialog = this.dialog.open(AbmCursosComponent, {
+      data: {
+        curso,
+      }
+    })
 
+    dialog.afterClosed()
+    .subscribe((formValue) => {
+      if (formValue) {
+        this.cursosService.editarCurso(curso.id, formValue);
+      }
+    })
+  }
 
-  actualizarCurso(): void {}
-  deleteCurso(): void {}
+  eliminarCurso(curso: Curso): void {
+ this.cursosService.eliminarCurso(curso.id);
+
+  }
   abrirDetallesCurso(): void {}
 
   aplicarFiltros(ev: Event): void {

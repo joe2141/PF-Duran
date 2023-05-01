@@ -42,7 +42,7 @@ export class CursosService {
     return this.cursos$.asObservable();
   }
 
-  cerearCurso(payload: CrearCursoPayload): Observable<Curso[]> {
+  crearCurso(payload: CrearCursoPayload): Observable<Curso[]> {
     this.cursos$.pipe(take(1)).subscribe({
       next: (cursos) => {
         this.cursos$.next([
@@ -56,4 +56,45 @@ export class CursosService {
     });
     return this.cursos$.asObservable();
   }
+
+  editarCurso(
+    cursoId: number,
+    actualizacion: Partial<Curso>
+  ): Observable<Curso[]> {
+    this.cursos$.pipe(take(1)).subscribe({
+      next: (cursos) => {
+        const cursosActualizados = cursos.map((curso) => {
+          if (curso.id === cursoId) {
+            return {
+              ...curso,
+              ...actualizacion,
+            };
+          } else {
+            return curso;
+          }
+        });
+        this.cursos$.next(cursosActualizados);
+      },
+    });
+    return this.cursos$.asObservable();
+  }
+
+eliminarCurso(cursoId: number): Observable<Curso[]> {
+  this.cursos$
+  .pipe
+  (
+    take(1)
+    )
+    .subscribe({
+      next: (cursos) => {
+        const cursosActualizados = cursos.filter((curso) => curso.id !== cursoId)
+      this.cursos$.next(cursosActualizados);
+    },
+  });
+  return this.cursos$.asObservable();
+}
+
+
+
+
 }
