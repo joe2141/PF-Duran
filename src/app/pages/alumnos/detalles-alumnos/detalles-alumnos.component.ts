@@ -28,17 +28,8 @@ export class DetallesAlumnosComponent implements OnDestroy {
 
   constructor(private matDialog: MatDialog,
     private activatedRoute: ActivatedRoute,
-    private inscripcionesService: InscripcionesService,
     private alumnosServices: AlumnosService,
-  ) {
-    this.inscripcionesService.obtenerInscripciones()
-      .subscribe((inscripciones) => {
-        this.dataSource.data = inscripciones.filter(x => x.alumnoId === parseInt(this.activatedRoute.snapshot.params['id']));
-      });
-    this.alumnosServices.obtenerAlumnoPorId(parseInt(this.activatedRoute.snapshot.params['id']))
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((alumno) => this.alumno = alumno);
-  }
+  ) {  }
 
   desuscribirAlumno(alumnoForDelete: Alumno): void {
     if (confirm("Esta seguro de borrar?")) {

@@ -17,8 +17,17 @@ export class AbmInscripcionesComponent {
     ]
   );
 
+  cursoControl = new FormControl('',
+  [
+    Validators.required,
+    Validators.minLength(3),
+  ]
+);
+
+
   inscripcionesForms = new FormGroup({
-    nombre: this.nombreControl,
+    alumno: this.nombreControl,
+    curso: this.cursoControl,
   })
 
   constructor(

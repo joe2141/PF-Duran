@@ -45,14 +45,18 @@ export class InscripcionesComponent {
 
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {
+
         this.dataSource.data = [...this.dataSource.data,
+
         {
+
           ...valor,
-          fecha_registro: new Date(),
+          fecha_inicio: new Date(),
           id: this.dataSource.data.length + 1,
         }
         ];
       }
+      console.log(valor);
     })
   }
 
