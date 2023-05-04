@@ -16,6 +16,7 @@ export class InscripcionesService {
       alumno: 'Kilian',
       curso: 'Angular',
       fecha_inicio: new Date(),
+      acciones: '',
     },
     {
       id: 2,
@@ -24,6 +25,7 @@ export class InscripcionesService {
       alumno: 'Elia',
       curso: 'React',
       fecha_inicio: new Date(),
+      acciones: '',
     },
     {
       id: 3,
@@ -32,6 +34,7 @@ export class InscripcionesService {
       alumno: 'Edurne',
       curso: 'Android',
       fecha_inicio: new Date(),
+      acciones: '',
     },
   ])
 
