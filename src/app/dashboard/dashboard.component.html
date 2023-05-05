@@ -3,6 +3,9 @@
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <img class="photo" mat-card-sm-image src="https://uploads.turbologo.com/uploads/design/hq_preview_image/472636/draw_svg20210830-31526-9wr9ip.svg.png" >
     <p></p>
+    <p>{{(authUer$ | async)?.email}}</p>
+    <p>{{(authUer$ | async)?.nombre}}</p>
+    <p></p>
     <mat-nav-list>
       <a
         [routerLink]="link.path"
