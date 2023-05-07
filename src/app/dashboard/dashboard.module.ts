@@ -13,6 +13,11 @@ import { CursosModule } from '../pages/cursos/cursos.module';
 import { InscripcionesModule } from '../pages/inscripciones/inscripciones.module';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list'
+import { AlumnosComponent } from '../pages/alumnos/alumnos.component';
+import { DetallesAlumnosComponent } from '../pages/alumnos/detalles-alumnos/detalles-alumnos.component';
+import { CursosComponent } from '../pages/cursos/cursos.component';
+import { DetallesCursosComponent } from '../pages/cursos/detalles-cursos/detalles-cursos/detalles-cursos.component';
+import { InscripcionesComponent } from '../pages/inscripciones/inscripciones.component';
 
 
 @NgModule({
@@ -32,7 +37,31 @@ import { MatListModule } from '@angular/material/list'
     FormularioModule,
     CursosModule,
     InscripcionesModule,
-    MatListModule
+    MatListModule,
+    RouterModule.forChild([
+      {
+        path: 'estudiantes',
+        loadChildren: () => import('../pages/alumnos/alumnos.module').then((m) => m.AlumnosModule)
+      },
+        {
+          path: 'cursos',
+          children: [
+            {
+              path: '',
+              component: CursosComponent,
+            },
+            {
+              path: ':id',
+              component: DetallesCursosComponent
+            }
+          ]
+        },
+        {
+          path: 'inscripciones',
+          component: InscripcionesComponent,
+        },
+
+    ])
 
 
   ],

@@ -15,6 +15,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { DetallesAlumnosComponent } from './detalles-alumnos/detalles-alumnos.component';
 import {MatCardModule} from '@angular/material/card';
+import { AlumnosRoutingModule } from './alumnos-routing.module';
 
 
 
@@ -42,7 +43,8 @@ import {MatCardModule} from '@angular/material/card';
     ReactiveFormsModule,
     MatOptionModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    AlumnosRoutingModule
   ],
   exports: [
     AlumnosComponent
