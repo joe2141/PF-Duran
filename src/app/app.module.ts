@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { CursosModule } from './pages/cursos/cursos.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CursosModule } from './pages/cursos/cursos.module';
     BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
-    CursosModule
+    CursosModule,
+    HttpClientModule
 
   ],
   providers: [],

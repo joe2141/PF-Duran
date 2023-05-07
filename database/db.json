@@ -1,0 +1,22 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Joel",
+      "apellido": "Duran",
+      "email": "joel@mail.com",
+      "password": "123456",
+      "token": "dsklfjdklñjfjkldf9sdf87asfsdhfjknejkr",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "nombre": "Marty",
+      "apellido": "Mcfly",
+      "email": "marty@email.com",
+      "password": "3CZV657",
+      "token": "fjkhasdjkfhashjkHKJHJKHklikl45io23l4523j4h3",
+      "role": "user"
+    }
+  ]
+}
