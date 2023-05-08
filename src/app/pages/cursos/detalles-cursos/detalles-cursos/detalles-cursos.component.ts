@@ -1,12 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
-import { Curso } from '../../../cursos/Componentes/models/index';
-import { CursosService } from '../../Componentes/services/cursos.service';
-import { Inscripciones } from '../../../inscripciones/componentes/models/index';
+import { Inscripciones } from '../../../inscripciones/componentes/models';
 import { MatDialog } from '@angular/material/dialog';
 import { Alumno } from '../../../alumnos/componentes/models/index';
+import { InscripcionesService } from '../../../inscripciones/componentes/services/cursos.service';
 
 @Component({
   selector: 'app-detalles-cursos',
@@ -26,7 +24,14 @@ export class DetallesCursosComponent {
 
   constructor(private matDialog: MatDialog,
     private activatedRoute: ActivatedRoute,
-  ) {  }
+    private inscripcionesService: InscripcionesService
+  ) {
+
+    this.inscripcionesService.obtenerInscripciones()
+      .subscribe((inscripciones) => {
+        this.dataSource.data = inscripciones.filter(x => x.cursoId === parseInt(this.activatedRoute.snapshot.params['id']));
+      })
+  }
 
   desuscribirAlumno(alumnoForDelete: Alumno): void {
     if (confirm("Esta seguro de borrar?")) {

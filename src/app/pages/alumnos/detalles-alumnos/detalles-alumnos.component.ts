@@ -5,7 +5,8 @@ import { Alumno } from '../componentes/models/index';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Inscripciones } from '../../inscripciones/componentes/models';
-import { Subject} from 'rxjs';
+import { InscripcionesService } from '../../inscripciones/componentes/services/cursos.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-detalles-alumnos',
@@ -27,8 +28,17 @@ export class DetallesAlumnosComponent implements OnDestroy {
 
   constructor(private matDialog: MatDialog,
     private activatedRoute: ActivatedRoute,
+    private inscripcionesService: InscripcionesService,
     private alumnosServices: AlumnosService,
-  ) {  }
+  ) {
+    this.inscripcionesService.obtenerInscripciones()
+      .subscribe((inscripciones) => {
+        this.dataSource.data = inscripciones.filter(x => x.alumnoId === parseInt(this.activatedRoute.snapshot.params['id']));
+      });
+    this.alumnosServices.obtenerAlumnoPorId(parseInt(this.activatedRoute.snapshot.params['id']))
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((alumno) => this.alumno = alumno);
+  }
 
   desuscribirAlumno(alumnoForDelete: Alumno): void {
     if (confirm("Esta seguro de borrar?")) {

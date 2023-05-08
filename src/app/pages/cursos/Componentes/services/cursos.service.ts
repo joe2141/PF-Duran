@@ -17,7 +17,7 @@ const CURSOS_MOCKS: Curso[] = [
   },
   {
     id: 3,
-    nombre: 'Android',
+    nombre: 'Asado Profecional',
     fecha_inicio: new Date(),
     fecha_fin: new Date(),
   },

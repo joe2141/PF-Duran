@@ -1,7 +1,9 @@
 export interface Inscripciones {
-    id: number;
-    alumno:string;
-    curso: string;
-    fecha_inicio: Date;
-    acciones: string;
-  }
+  id: number;
+  alumnoId: number;
+  cursoId: number;
+  alumno: string;
+  curso: string;
+  fecha_inicio: Date;
+}
+

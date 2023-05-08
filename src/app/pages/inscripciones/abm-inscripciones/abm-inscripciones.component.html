@@ -4,18 +4,10 @@
     <table class="width" cellspacing="0">
       <td>
         <mat-form-field class="width">
-          <mat-label>Nombre del Alumno</mat-label>
+          <mat-label>Nombre</mat-label>
           <input matInput [ngClass]="{ 'is-invalid': nombreControl.invalid && nombreControl.touched}"
             [formControl]="nombreControl" class="form-control" />
           <div *ngIf="nombreControl.hasError('required') && nombreControl.touched" class="invalid-feedback">
-            Este campo es obligatorio
-          </div>
-        </mat-form-field>
-        <mat-form-field class="width">
-          <mat-label>Nombre del curso</mat-label>
-          <input matInput [ngClass]="{ 'is-invalid': cursoControl.invalid && cursoControl.touched}"
-            [formControl]="cursoControl" class="form-control" />
-          <div *ngIf="cursoControl.hasError('required') && nombreControl.touched" class="invalid-feedback">
             Este campo es obligatorio
           </div>
         </mat-form-field>

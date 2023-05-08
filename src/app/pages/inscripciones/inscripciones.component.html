@@ -1,8 +1,3 @@
-<button class="addButton" (click)="abrirABMinscripciones()" mat-flat-button color="primary">
-  <mat-icon>add</mat-icon>
-  Agregar Inscripcion
-</button>
-
 <mat-form-field class="w-full">
   <mat-label>Buscar</mat-label>
   <input matInput (keyup)="aplicarFiltros($event)" placeholder="Ex. ium" #input>
@@ -30,18 +25,6 @@
   <ng-container matColumnDef="fecha_inicio">fecha de inicio
     <th mat-header-cell *matHeaderCellDef appFontSize> Fecha de inicio </th>
     <td mat-cell *matCellDef="let inscripciones"> {{inscripciones.fecha_inicio | date: 'dd/MM/YYYY'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="acciones">acciones
-    <th mat-header-cell *matHeaderCellDef appFontSize> Acciones </th>
-    <td mat-cell *matCellDef="let inscripcion">
-      <button (click)="actualizarinscripciones(inscripcion)" mat-icon-button>
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button (click)="deleteInscripciones(inscripcion)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

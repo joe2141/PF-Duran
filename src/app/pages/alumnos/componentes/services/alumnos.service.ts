@@ -10,57 +10,57 @@ export class AlumnosService {
   private estudiantes$ = new BehaviorSubject<Alumno[]>([
     {
       id: 1,
-      nombre: 'Victorine',
-      apellido: 'Vilmantė',
-      correo: 'victorine@mail.com',
+      nombre: 'Paulino',
+      apellido: 'Canto',
+      correo: 'canto@mail.com',
       pais: 'Argentina',
       fecha_registro: new Date(),
-      acciones: 'hola'
+      acciones: ''
     },
     {
       id: 2,
-      nombre: 'Alhaji',
-      apellido: 'Alia',
-      correo: ' alhajialia@mail.com',
-      pais: 'India',
+      nombre: 'Anna',
+      apellido: 'San-Jose',
+      correo: ' san-Jose@mail.com',
+      pais: 'Uruguay',
       fecha_registro: new Date(),
-      acciones: 'hola'
+      acciones: ''
     },
     {
       id: 3,
-      nombre: 'Edurne',
-      apellido: 'Carballo',
-      correo: 'edurne@mail.com',
-      pais: 'Peru',
+      nombre: 'Ramiro',
+      apellido: 'Espada',
+      correo: 'sspada@mail.com',
+      pais: 'Brazil',
       fecha_registro: new Date(),
-      acciones: 'hola'
+      acciones: ''
     },
     {
       id: 4,
-      nombre: 'Klava',
-      apellido: 'Franck',
-      correo: 'klavaf@mail.com',
-      pais: 'Peru',
+      nombre: 'Pamela',
+      apellido: 'Rueda',
+      correo: 'rueda@mail.com',
+      pais: 'Chile',
       fecha_registro: new Date(),
-      acciones: 'hola'
+      acciones: ''
     },
     {
       id: 5,
-      nombre: 'Geetha',
-      apellido: 'Karan',
-      correo: 'gee_karan@mail.com',
+      nombre: 'Martha',
+      apellido: 'Ahmed',
+      correo: 'marthmed@mail.com',
       pais: 'Peru',
       fecha_registro: new Date(),
-      acciones: 'hola'
+      acciones: ''
     },
     {
       id: 6,
-      nombre: 'Dayton',
-      apellido: 'Geboom',
-      correo: 'daytong@mail.com',
-      pais: 'Peru',
+      nombre: 'Mireia',
+      apellido: 'Santamaria',
+      correo: 'mirantamaria@mail.com',
+      pais: 'Argentina',
       fecha_registro: new Date(),
-      acciones: 'hola'
+      acciones: ''
     },
   ])
 

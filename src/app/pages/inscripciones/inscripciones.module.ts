@@ -11,8 +11,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { InscripcionesComponent } from './inscripciones.component';
+import { InscripcionesComponent } from '../inscripciones/inscripciones.component';
 import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -21,7 +22,7 @@ import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones
 @NgModule({
   declarations: [
     InscripcionesComponent,
-    AbmInscripcionesComponent,
+    AbmInscripcionesComponent
   ],
   imports: [
     CommonModule,
@@ -38,6 +39,12 @@ import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones
     ReactiveFormsModule,
     MatOptionModule,
     MatSelectModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: InscripcionesComponent
+      }
+    ]),
   ],
   exports: [
     InscripcionesComponent
