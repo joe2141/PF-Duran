@@ -1,7 +1,7 @@
 import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth.component';
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './page/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,7 +23,12 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
+  {
+    path: '**',
+    redirectTo: 'login',
+  }
 ]
+
 
 @NgModule({
   declarations: [
