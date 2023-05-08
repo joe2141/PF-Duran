@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { DetallesAlumnosComponent } from './detalles-alumnos/detalles-alumnos.component';
 import {MatCardModule} from '@angular/material/card';
 import { AlumnosRoutingModule } from './alumnos-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -44,7 +45,17 @@ import { AlumnosRoutingModule } from './alumnos-routing.module';
     MatOptionModule,
     MatSelectModule,
     MatCardModule,
-    AlumnosRoutingModule
+    AlumnosRoutingModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: AlumnosComponent
+      },
+      {
+        path: ':id',
+        component: DetallesAlumnosComponent,
+      },
+    ]),
   ],
   exports: [
     AlumnosComponent
