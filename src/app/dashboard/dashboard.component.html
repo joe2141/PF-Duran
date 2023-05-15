@@ -32,6 +32,9 @@
       </button>
       <span appFontSize>Universidad Falsa de New York</span>
       <span class="example-spacer"></span>
+      <p class="nombre">{{(authUser$ | async)?.nombre}}</p>
+      <span class="nombre">{{ titleService.getTitle() }}</span>
+
       <app-hora></app-hora>
     </mat-toolbar>
 

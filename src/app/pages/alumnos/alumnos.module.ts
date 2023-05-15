@@ -53,7 +53,8 @@ import { RouterModule } from '@angular/router';
       },
       {
         path: ':id',
-        component: DetallesAlumnosComponent,
+        component: DetallesAlumnosComponent
+
       },
     ]),
   ],

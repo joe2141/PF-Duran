@@ -25,15 +25,18 @@ import { MatListModule } from '@angular/material/list'
     RouterModule.forChild([
       {
         path: 'estudiantes',
-        loadChildren: () => import('../pages/alumnos/alumnos.module').then((m) => m.AlumnosModule)
+        loadChildren: () => import('../pages/alumnos/alumnos.module').then((m) => m.AlumnosModule),
+        data: { title: 'Estudiantes' }
       },
       {
         path: 'cursos',
         loadChildren: () => import('../pages/cursos/cursos.module').then((m) => m.CursosModule),
+        data: { title: 'Cursos' }
       },
       {
         path: 'inscripciones',
         loadChildren: () => import('../pages/inscripciones/inscripciones.module').then((m) => m.InscripcionesModule),
+        data: { title: 'Inscripciones' }
       }
     ])
   ],
