@@ -20,6 +20,11 @@ const links: NavItem[] = [
     title: 'Inscripciones',
     icon: 'add,'
   },
+  {
+    path: 'usuarios',
+    title: 'Usuarios',
+    icon: 'group'
+  },
 ]
 
 export default links;

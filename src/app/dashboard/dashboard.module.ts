@@ -37,6 +37,11 @@ import { MatListModule } from '@angular/material/list'
         path: 'inscripciones',
         loadChildren: () => import('../pages/inscripciones/inscripciones.module').then((m) => m.InscripcionesModule),
         data: { title: 'Inscripciones' }
+      },
+      {
+        path: 'usuarios',
+        loadChildren: () => import('../pages/usuarios/usuarios.module').then((m) => m.UsuariosModuleTsModule),
+        data: { title: 'Usuarios' }
       }
     ])
   ],

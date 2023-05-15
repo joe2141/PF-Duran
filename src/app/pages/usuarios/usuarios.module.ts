@@ -1,3 +1,5 @@
+import { UsuariosComponent } from './usuarios.component';
+import { AbmUsuariosComponent } from './abm-usuarios/abm-usuarios.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
@@ -11,10 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
-import { CursosComponent } from './cursos.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { DetallesCursosComponent } from './detalles-cursos/detalles-cursos.component';
 import {MatCardModule} from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 
@@ -23,9 +22,8 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    CursosComponent,
-    AbmCursosComponent,
-    DetallesCursosComponent
+    UsuariosComponent,
+    AbmUsuariosComponent,
   ],
   imports: [
     CommonModule,
@@ -48,16 +46,9 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: '',
-        component: CursosComponent
-      },
-      {
-        path: ':id',
-        component: DetallesCursosComponent,
-      },
+        component: UsuariosComponent
+      }
     ]),
-  ], exports: [
-    CursosComponent
   ]
-
 })
-export class CursosModule { }
+export class UsuariosModuleTsModule { }
