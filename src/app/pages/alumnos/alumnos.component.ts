@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlumnosService } from './componentes/services/alumnos.service';
 import { Alumno } from '../alumnos/componentes/models/index';
 import { AuthService } from '../../auth/services/auth.service';
-import { Usuario } from 'src/app/core/models';
+import { Usuario } from '../../core/models/index';
 import { Observable } from 'rxjs';
 
 @Component({

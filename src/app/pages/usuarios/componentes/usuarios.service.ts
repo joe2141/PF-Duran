@@ -7,13 +7,15 @@ const CURSOS_MOCKS: Usuario[] = [
     id: 1,
     nombre: 'joel',
     correo: 'joel@mail.com',
-    contrasena: '123456'
+    contrasena: '123456',
+    role: 'admin'
   },
   {
     id: 2,
     nombre: 'Marty',
     correo: 'marty@email.com',
-    contrasena: '12334'
+    contrasena: '12334',
+    role: 'user'
   },
 ];
 
