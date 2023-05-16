@@ -114,11 +114,11 @@ export class AlumnosComponent implements OnInit {
             );
             if (index !== -1) {
               this.dataSource.data[index] = { ...alumnoParaEditar, ...dataDelAlumnoEditado };
+              this.dataSource = new MatTableDataSource(this.dataSource.data);
             }
           },
         );
       }
     });
-
   }
 }
