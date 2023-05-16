@@ -19,8 +19,6 @@
       "role": "user"
     }
   ],
-
-
   "alumnos": [
     {
       "id": 1,
@@ -39,18 +37,22 @@
       "fecha_registro": "2023-04-27T01:27:59.631Z"
     },
     {
-      "id": 3,
       "nombre": "Edurne",
       "apellido": "Carballo",
       "correo": "edurne@mail.com",
-      "pais": "Peru",
-      "fecha_registro": "2023-04-27T01:27:59.631Z"
+      "pais": "peru",
+      "fecha_registro": "2023-05-16T19:38:21.393Z",
+      "id": 3
+    },
+    {
+      "nombre": "asdad",
+      "apellido": "asdasd",
+      "correo": "dasd@mail.com",
+      "pais": "asdasdasd",
+      "fecha_registro": "2023-05-16T19:50:40.274Z",
+      "id": 4
     }
   ],
-
-
-
-
   "cursos": [
     {
       "id": 1,
@@ -71,10 +73,6 @@
       "fecha_fin": "2023-04-27T01:27:59.631Z"
     }
   ],
-
-
-
-
   "inscripciones": [
     {
       "id": 1,
@@ -83,22 +81,22 @@
       "alumno": "Victorine",
       "curso": "Angular",
       "fecha_inicio": "2023-04-27T01:27:59.631Z"
-  },
-  {
+    },
+    {
       "id": 2,
       "alumnoId": 1,
       "cursoId": 2,
       "alumno": "Victorine",
       "curso": "React",
       "fecha_inicio": "2023-04-27T01:27:59.631Z"
-  },
-  {
+    },
+    {
       "id": 3,
       "alumnoId": 1,
       "cursoId": 3,
       "alumno": "Victorine",
       "curso": "Android",
       "fecha_inicio": "2023-04-27T01:27:59.631Z"
-  }
+    }
   ]
 }

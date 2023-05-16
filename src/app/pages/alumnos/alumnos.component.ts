@@ -7,7 +7,7 @@ import { Alumno } from '../alumnos/componentes/models/index';
 import { AuthService } from '../../auth/services/auth.service';
 import { Usuario } from '../../core/models/index';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { enviroment } from 'src/environments/environments';
 
 @Component({
@@ -82,9 +82,16 @@ export class AlumnosComponent implements OnInit {
   }
 
   deleteAlumno(alumnoForDelete: Alumno): void {
-    if (confirm('Esta seguro de borrar?')) {
-      this.dataSource.data = this.dataSource.data.filter(
-        (alumnoActual) => alumnoActual.id !== alumnoForDelete.id
+    if (confirm('¿Está seguro de borrar?')) {
+      const url = `${enviroment.apiBaseUrl}/alumnos/${alumnoForDelete.id}`;
+      const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+      this.http.delete(url, { headers }).subscribe(
+        () => {
+          this.dataSource.data = this.dataSource.data.filter(
+            (alumnoActual) => alumnoActual.id !== alumnoForDelete.id
+          );
+        },
       );
     }
   }
@@ -97,12 +104,21 @@ export class AlumnosComponent implements OnInit {
     });
     dialog.afterClosed().subscribe((dataDelAlumnoEditado) => {
       if (dataDelAlumnoEditado) {
-        this.dataSource.data = this.dataSource.data.map((alumnoActual) =>
-          alumnoActual.id === alumnoParaEditar.id
-            ? { ...alumnoActual, ...dataDelAlumnoEditado }
-            : alumnoActual
+        const url = `${enviroment.apiBaseUrl}/alumnos/${alumnoParaEditar.id}`;
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+        this.http.put(url, dataDelAlumnoEditado, { headers }).subscribe(
+          () => {
+            const index = this.dataSource.data.findIndex(
+              (alumnoActual) => alumnoActual.id === alumnoParaEditar.id
+            );
+            if (index !== -1) {
+              this.dataSource.data[index] = { ...alumnoParaEditar, ...dataDelAlumnoEditado };
+            }
+          },
         );
       }
     });
+
   }
 }

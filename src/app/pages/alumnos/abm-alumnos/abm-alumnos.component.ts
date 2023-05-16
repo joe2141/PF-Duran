@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -39,31 +40,57 @@ export class AbmAlumnosComponent {
     ]
   );
 
+  fechaControl = new FormControl('',
+    [
+      Validators.required,
+    ]
+  );
+
   alumnoForms = new FormGroup({
     nombre: this.nombreControl,
     apellido: this.apellidoControl,
     correo: this.emailControl,
-    pais: this.paisControl
-  })
+    pais: this.paisControl,
+    fecha_registro: new FormControl()
+  });
 
   constructor(
     private dialogRef: MatDialogRef<AbmAlumnosComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
+    private http: HttpClient
   ) {
     if (data) {
       this.nombreControl.setValue(data.alumnoParaEditar.nombre);
       this.apellidoControl.setValue(data.alumnoParaEditar.apellido);
       this.emailControl.setValue(data.alumnoParaEditar.correo);
       this.paisControl.setValue(data.alumnoParaEditar.pais);
+      this.fechaControl.setValue(data.alumnoParaEditar.fecha);
     }
   }
 
   guardar(): void {
     if (this.alumnoForms.valid) {
-      this.dialogRef.close(this.alumnoForms.value)
+      const alumno = {
+        ...this.alumnoForms.value,
+        fecha_registro: new Date().toISOString()
+      };
+
+      if (this.data && this.data.alumnoParaEditar) {
+        const url = `http://localhost:3000/alumnos/${this.data.alumnoParaEditar.id}`;
+        this.http.put<any>(url, alumno).subscribe({
+          next: (response) => {
+            this.dialogRef.close(alumno);
+          },
+        });
+      } else {
+        this.http.post<any>('http://localhost:3000/alumnos', alumno).subscribe({
+          next: (response) => {
+            this.dialogRef.close(alumno);
+          },
+        });
+      }
     } else {
       this.alumnoForms.markAllAsTouched();
     }
-
   }
 }

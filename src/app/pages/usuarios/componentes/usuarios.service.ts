@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CrearUsuarioPayload, Usuario } from './models/indesx';
 import { BehaviorSubject, Observable, map, take } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
 const CURSOS_MOCKS: Usuario[] = [
   {
     id: 1,
@@ -25,11 +25,12 @@ const CURSOS_MOCKS: Usuario[] = [
 export class usuarioService {
   private usuarios$ = new BehaviorSubject<Usuario[]>([]);
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
   obtenerUsuarios(): Observable<Usuario[]> {
     this.usuarios$.next(CURSOS_MOCKS);
     return this.usuarios$.asObservable();
   }
+
 
   getUsuarioById(usuarioId: number): Observable<Usuario | undefined> {
     return this.usuarios$.asObservable()
