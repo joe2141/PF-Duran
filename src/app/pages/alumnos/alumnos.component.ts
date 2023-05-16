@@ -1,43 +1,61 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlumnosService } from './componentes/services/alumnos.service';
 import { Alumno } from '../alumnos/componentes/models/index';
-
+import { AuthService } from '../../auth/services/auth.service';
+import { Usuario } from 'src/app/core/models';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-alumnos',
   templateUrl: './alumnos.component.html',
   styleUrls: ['./alumnos.component.scss']
 })
-export class AlumnosComponent {
+export class AlumnosComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Alumno>();
-
-  displayedColumns: string[] = ['id', 'nombreCompleto', 'correo', 'pais', 'fecha_registro', 'acciones']
+  displayedColumns: string[] = ['id', 'nombreCompleto', 'correo', 'pais', 'fecha_registro', 'acciones'];
 
   aplicarFiltros(ev: Event): void {
     const inputValue = (ev.target as HTMLInputElement)?.value;
     this.dataSource.filter = inputValue?.trim()?.toLowerCase();
   }
 
-  constructor(private matDialog: MatDialog,
+  authUser$: Observable<Usuario | null>;
+  role: string | null | undefined;
+
+  constructor(
+    private matDialog: MatDialog,
     private router: Router,
-    private activatesRoute: ActivatedRoute,
-    private alumnosService: AlumnosService
+    private activatedRoute: ActivatedRoute,
+    private alumnosService: AlumnosService,
+    private authService: AuthService
   ) {
+    this.authUser$ = this.authService.obtenerUsuarioAutenticado();
+  }
+
+  ngOnInit(): void {
+    this.authUser$.subscribe((user: Usuario | null) => {
+      if (user) {
+        this.role = user.role;
+      } else {
+        this.role = null;
+      }
+    });
 
     this.alumnosService.obtenerAlumnos()
       .subscribe((alumnos) => {
         this.dataSource.data = alumnos;
-      })
+      });
   }
+
 
   irAlDetalle(alumnoId: number): void {
     this.router.navigate([alumnoId], {
-      relativeTo: this.activatesRoute,
+      relativeTo: this.activatedRoute,
     });
   }
 
