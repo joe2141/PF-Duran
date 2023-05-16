@@ -18,5 +18,87 @@
       "token": "fjkhasdjkfhashjkHKJHJKHklikl45io23l4523j4h3",
       "role": "user"
     }
+  ],
+
+
+  "alumnos": [
+    {
+      "id": 1,
+      "nombre": "Victorine",
+      "apellido": "Vilmantė",
+      "correo": "victorine@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 2,
+      "nombre": "alkapone",
+      "apellido": "Alia",
+      "correo": "alhajialia@mail.com",
+      "pais": "India",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 3,
+      "nombre": "Edurne",
+      "apellido": "Carballo",
+      "correo": "edurne@mail.com",
+      "pais": "Peru",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
+    }
+  ],
+
+
+
+
+  "cursos": [
+    {
+      "id": 1,
+      "nombre": "Angular",
+      "fecha_inicio": "2023-04-27T01:27:59.631Z",
+      "fecha_fin": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 2,
+      "nombre": "React",
+      "fecha_inicio": "2023-04-27T01:27:59.631Z",
+      "fecha_fin": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 3,
+      "nombre": "Asado",
+      "fecha_inicio": "2023-04-27T01:27:59.631Z",
+      "fecha_fin": "2023-04-27T01:27:59.631Z"
+    }
+  ],
+
+
+
+
+  "inscripciones": [
+    {
+      "id": 1,
+      "alumnoId": 1,
+      "cursoId": 1,
+      "alumno": "Victorine",
+      "curso": "Angular",
+      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+  },
+  {
+      "id": 2,
+      "alumnoId": 1,
+      "cursoId": 2,
+      "alumno": "Victorine",
+      "curso": "React",
+      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+  },
+  {
+      "id": 3,
+      "alumnoId": 1,
+      "cursoId": 3,
+      "alumno": "Victorine",
+      "curso": "Android",
+      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+  }
   ]
 }

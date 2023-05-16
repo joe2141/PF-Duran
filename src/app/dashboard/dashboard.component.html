@@ -13,8 +13,7 @@
           mat-list-item
           *ngIf="
             !link.allowedRoles.length || (verifyRole(link) | async)
-          "
-        >
+          ">
           <mat-icon *ngIf="link.icon">{{ link.icon }}</mat-icon>
           {{ link.title }}
         </a>

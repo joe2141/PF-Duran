@@ -31,11 +31,6 @@ export class AbmAlumnosComponent {
     ]
   );
 
-  cursoControl = new FormControl('',
-    [
-      Validators.required,
-    ]
-  );
 
   paisControl = new FormControl('',
     [
@@ -48,7 +43,6 @@ export class AbmAlumnosComponent {
     nombre: this.nombreControl,
     apellido: this.apellidoControl,
     correo: this.emailControl,
-    curso: this.cursoControl,
     pais: this.paisControl
   })
 
@@ -60,7 +54,6 @@ export class AbmAlumnosComponent {
       this.nombreControl.setValue(data.alumnoParaEditar.nombre);
       this.apellidoControl.setValue(data.alumnoParaEditar.apellido);
       this.emailControl.setValue(data.alumnoParaEditar.correo);
-      this.cursoControl.setValue(data.alumnoParaEditar.curso);
       this.paisControl.setValue(data.alumnoParaEditar.pais);
     }
   }
