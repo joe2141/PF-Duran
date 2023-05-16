@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import links from './nav-items';
+import links, { NavItem } from './nav-items';
 import { AuthService } from '../auth/services/auth.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable, Subject, filter, map } from 'rxjs';
@@ -85,4 +85,13 @@ export class DashboardComponent implements OnInit {
         this.titleService.setTitle(title);
       });
 }
+
+verifyRole(link: NavItem): Observable<boolean> {
+  return this.authUser$.pipe(
+    map((usuarioAuth) =>
+      link.allowedRoles.some((r) => r === usuarioAuth?.role) // true | false
+    )
+  );
+}
+
 }
