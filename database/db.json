@@ -40,8 +40,8 @@
       "nombre": "Edurne",
       "apellido": "Carballo",
       "correo": "edurne@mail.com",
-      "pais": "peru",
-      "fecha_registro": "2023-05-16T19:38:21.393Z",
+      "pais": "peruo",
+      "fecha_registro": "2023-05-18T16:14:46.112Z",
       "id": 3
     }
   ],
@@ -60,7 +60,7 @@
     },
     {
       "id": 3,
-      "nombre": "Asado",
+      "nombre": "Asados",
       "fecha_inicio": "2023-04-27T01:27:59.631Z",
       "fecha_fin": "2023-04-27T01:27:59.631Z"
     }

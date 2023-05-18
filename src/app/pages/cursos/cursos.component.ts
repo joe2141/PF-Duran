@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./cursos.component.scss'],
 })
 export class CursosComponent implements OnInit {
-  dataSource = new MatTableDataSource();
+  dataSource = new MatTableDataSource<Curso>();
   displayedColumns = ['id', 'nombre', 'fecha_inicio', 'fecha_fin', 'acciones'];
 
   authUser$: Observable<Usuario | null>;
@@ -47,11 +47,13 @@ export class CursosComponent implements OnInit {
       }
     });
 
-    this.cursosService.obtenerCursos().subscribe({
-      next: (cursos) => {
-        this.dataSource.data = cursos;
-      },
+    console.log("Antes de llamar a obtenerCursos()");
+
+    this.cursosService.obtenerCursos().subscribe((cursos: Curso[]) => {
+      this.dataSource.data = cursos;
     });
+
+    console.log("Después de llamar a obtenerCursos()");
   }
 
   crearCurso(): void {
@@ -59,7 +61,9 @@ export class CursosComponent implements OnInit {
 
     dialog.afterClosed().subscribe((formValue) => {
       if (formValue) {
-        this.cursosService.crearCurso(formValue);
+        this.cursosService.crearCurso(formValue).subscribe((nuevoCurso) => {
+          this.dataSource.data.push(nuevoCurso);
+        });
       }
     });
   }
@@ -73,14 +77,29 @@ export class CursosComponent implements OnInit {
 
     dialog.afterClosed().subscribe((formValue) => {
       if (formValue) {
-        this.cursosService.editarCurso(curso.id, formValue);
+        const cursoActualizado = {
+          ...curso,
+          ...formValue,
+        };
+        this.cursosService.actualizarCurso(cursoActualizado).subscribe(() => {
+          for (let i = 0; i < this.dataSource.data.length; i++) {
+            if (this.dataSource.data[i].id === curso.id) {
+              this.dataSource.data[i] = cursoActualizado;
+              break;
+            }
+          }
+        });
       }
     });
   }
 
   eliminarCurso(curso: Curso): void {
     if (confirm('¿Está seguro?')) {
-      this.cursosService.eliminarCurso(curso.id);
+      this.cursosService.eliminarCurso(curso.id).subscribe(() => {
+        // Realiza acciones adicionales después de la eliminación del curso, si es necesario
+        // Por ejemplo, puedes eliminar el curso de la lista de cursos en el componente
+        this.dataSource.data = this.dataSource.data.filter((c) => c.id !== curso.id);
+      });
     }
   }
 
