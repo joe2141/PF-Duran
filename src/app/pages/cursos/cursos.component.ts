@@ -76,7 +76,7 @@ export class CursosComponent implements OnInit {
   editarCurso(curso: Curso): void {
     const dialog = this.dialog.open(AbmCursosComponent, {
       data: {
-        cursoParaEditar: curso,
+        curso: curso,  
       },
     });
 
