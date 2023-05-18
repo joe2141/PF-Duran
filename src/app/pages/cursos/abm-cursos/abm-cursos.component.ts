@@ -1,13 +1,15 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormRecord, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Curso } from '../Componentes/models';
 
 @Component({
   selector: 'app-abm-cursos',
   templateUrl: './abm-cursos.component.html',
   styleUrls: ['./abm-cursos.component.scss'],
 })
-export class AbmCursosComponent {
+export class AbmCursosComponent implements OnInit {
+  cursoParaEditar: Curso | undefined;
   nombreControl = new FormControl('', [Validators.required, Validators.minLength(3),]);
   fechaInicioControl = new FormControl('', [Validators.required]);
   fechaFinControl = new FormControl('', [Validators.required]);
@@ -28,6 +30,10 @@ export class AbmCursosComponent {
       this.fechaInicioControl.setValue(cursoParaEditar.fecha_inicio);
       this.fechaFinControl.setValue(cursoParaEditar.fecha_fin);
     }
+  }
+
+  ngOnInit(): void {
+    this.cursoParaEditar = this.data?.cursoParaEditar;
   }
 
   guardar(): void {

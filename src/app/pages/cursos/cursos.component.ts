@@ -8,6 +8,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Usuario } from '../../core/models/index'
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 
 @Component({
@@ -27,7 +29,8 @@ export class CursosComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private cursosService: CursosService,
     private dialog: MatDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClient
   ) {
     this.authUser$ = this.authService.obtenerUsuarioAutenticado();
   }
@@ -56,13 +59,15 @@ export class CursosComponent implements OnInit {
     console.log("Después de llamar a obtenerCursos()");
   }
 
-  crearCurso(): void {
+  abrirABMCursos(): void {
     const dialog = this.dialog.open(AbmCursosComponent);
 
-    dialog.afterClosed().subscribe((formValue) => {
-      if (formValue) {
-        this.cursosService.crearCurso(formValue).subscribe((nuevoCurso) => {
-          this.dataSource.data.push(nuevoCurso);
+    dialog.afterClosed().subscribe((valor) => {
+      if (valor) {
+        // Guardar el nuevo curso en la base de datos
+        this.http.post<Curso>('http://localhost:3000/cursos', valor).subscribe((nuevoCurso: Curso) => {
+          // Actualizar la tabla de datos con el nuevo curso
+          this.dataSource.data = [...this.dataSource.data, nuevoCurso];
         });
       }
     });
@@ -71,22 +76,19 @@ export class CursosComponent implements OnInit {
   editarCurso(curso: Curso): void {
     const dialog = this.dialog.open(AbmCursosComponent, {
       data: {
-        curso,
+        cursoParaEditar: curso,
       },
     });
 
-    dialog.afterClosed().subscribe((formValue) => {
-      if (formValue) {
-        const cursoActualizado = {
-          ...curso,
-          ...formValue,
-        };
-        this.cursosService.actualizarCurso(cursoActualizado).subscribe(() => {
-          for (let i = 0; i < this.dataSource.data.length; i++) {
-            if (this.dataSource.data[i].id === curso.id) {
-              this.dataSource.data[i] = cursoActualizado;
-              break;
-            }
+    dialog.afterClosed().subscribe((dataDelCursoEditado) => {
+      if (dataDelCursoEditado) {
+        const url = `http://localhost:3000/cursos/${curso.id}`;
+        this.http.put(url, dataDelCursoEditado).subscribe(() => {
+          // Actualizar el curso modificado en la tabla de datos
+          const index = this.dataSource.data.findIndex((c) => c.id === curso.id);
+          if (index !== -1) {
+            this.dataSource.data[index] = { ...curso, ...dataDelCursoEditado };
+            this.dataSource = new MatTableDataSource(this.dataSource.data);
           }
         });
       }
@@ -112,3 +114,7 @@ export class CursosComponent implements OnInit {
     return this.role === 'admin';
   }
 }
+
+
+
+
