@@ -29,8 +29,10 @@ export class AbmUsuariosComponent {
     if (data) {
       const usuarioParaEditar = data.usuario;
       this.nombreControl.setValue(usuarioParaEditar.nombre);
+      this.apellidoControl.setValue(usuarioParaEditar.apellido);
       this.correoControl.setValue(usuarioParaEditar.email);
       this.contrasenaControl.setValue(usuarioParaEditar.password);
+      this.roleControl.setValue(usuarioParaEditar.role);
     }
   }
 

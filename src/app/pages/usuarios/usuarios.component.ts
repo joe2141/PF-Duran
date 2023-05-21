@@ -16,7 +16,7 @@ export class UsuariosComponent implements OnInit {
   displayedColumns = ['id', 'nombre', 'apellido', 'email', 'password', 'role', 'acciones'];
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private usuariosService: UsuarioService,
     private dialog: MatDialog
@@ -49,14 +49,21 @@ export class UsuariosComponent implements OnInit {
       data: {
         usuario,
       }
-    })
+    });
 
     dialog.afterClosed()
       .subscribe((formValue) => {
         if (formValue) {
-          this.usuariosService.editarUsuario(usuario.id, formValue);
+          this.usuariosService.editarUsuario(usuario.id, formValue)
+            .subscribe((usuarioActualizado) => {
+              const indice = this.dataSource.data.findIndex(u => u.id === usuarioActualizado.id);
+              if (indice !== -1) {
+                this.dataSource.data[indice] = usuarioActualizado;
+                this.dataSource._updateChangeSubscription();
+              }
+            });
         }
-      })
+      });
   }
 
   eliminarUsuario(usuario: Usuario): void {
