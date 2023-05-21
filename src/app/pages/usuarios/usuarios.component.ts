@@ -13,10 +13,10 @@ import { Usuario } from './componentes/models/indesx';
 })
 export class UsuariosComponent implements OnInit {
   dataSource = new MatTableDataSource<Usuario>();
-  displayedColumns = ['id', 'nombre', 'email', 'password', 'acciones'];
+  displayedColumns = ['id', 'nombre', 'apellido', 'email', 'password', 'role', 'acciones'];
 
   constructor(
-    private router: Router,
+    private router: Router, 
     private activatedRoute: ActivatedRoute,
     private usuariosService: UsuarioService,
     private dialog: MatDialog

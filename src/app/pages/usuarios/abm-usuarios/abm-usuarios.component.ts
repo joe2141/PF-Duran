@@ -10,13 +10,17 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class AbmUsuariosComponent {
   nombreControl = new FormControl('', [Validators.required, Validators.minLength(3),]);
+  apellidoControl = new FormControl('', [Validators.required, Validators.minLength(3),]);
   correoControl = new FormControl('', [Validators.required, Validators.email]);
   contrasenaControl = new FormControl('', [Validators.required, Validators.minLength(3),]);
+  roleControl = new FormControl('', [Validators.required]);
 
   usuarioFrom = new FormGroup({
     nombre: this.nombreControl,
+    apellido: this.apellidoControl,
     email: this.correoControl,
     password: this.contrasenaControl,
+    role: this.roleControl
   })
   constructor(
     private dialogRef: MatDialogRef<AbmUsuariosComponent>,
