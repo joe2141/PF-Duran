@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { usuarioService } from './componentes/usuarios.service';
+import { UsuarioService } from './componentes/usuarios.service';
 import { AbmUsuariosComponent } from './abm-usuarios/abm-usuarios.component';
 import { Usuario } from './componentes/models/indesx';
 
@@ -12,13 +12,13 @@ import { Usuario } from './componentes/models/indesx';
   styleUrls: ['./usuarios.component.scss']
 })
 export class UsuariosComponent implements OnInit {
-  dataSource = new MatTableDataSource();
-  displayedColumns = ['id', 'nombre', 'correo', 'contrasena', 'acciones'];
+  dataSource = new MatTableDataSource<Usuario>();
+  displayedColumns = ['id', 'nombre', 'email', 'password', 'acciones'];
 
   constructor(
     private router: Router,
-    private activatesRoute: ActivatedRoute,
-    private usuariosService: usuarioService,
+    private activatedRoute: ActivatedRoute,
+    private usuariosService: UsuarioService,
     private dialog: MatDialog
   ) { }
 
@@ -33,13 +33,16 @@ export class UsuariosComponent implements OnInit {
   crearUsuario(): void {
     const dialog = this.dialog.open(AbmUsuariosComponent);
 
-    dialog.afterClosed()
-      .subscribe((formValue) => {
-        if (formValue) {
-          this.usuariosService.crearUsuario(formValue)
-        }
-      });
+    dialog.afterClosed().subscribe((formValue) => {
+      if (formValue) {
+        this.usuariosService.crearUsuario(formValue).subscribe((nuevoUsuario) => {
+          this.dataSource.data.push(nuevoUsuario);
+          this.dataSource._updateChangeSubscription();
+        });
+      }
+    });
   }
+
 
   editarUsuario(usuario: Usuario): void {
     const dialog = this.dialog.open(AbmUsuariosComponent, {
@@ -57,8 +60,12 @@ export class UsuariosComponent implements OnInit {
   }
 
   eliminarUsuario(usuario: Usuario): void {
-    if (confirm('Esta Seguro?'))
-      this.usuariosService.eliminarUsuario(usuario.id);
+    if (confirm('¿Está seguro?')) {
+      this.usuariosService.eliminarUsuario(usuario.id).subscribe(() => {
+        // Eliminar el usuario de la tabla de datos
+        this.dataSource.data = this.dataSource.data.filter((u) => u.id !== usuario.id);
+      });
+    }
   }
 
   aplicarFiltros(ev: Event): void {

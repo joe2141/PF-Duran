@@ -14,7 +14,7 @@
       </td>
       <td>
         <mat-form-field class="width">
-          <mat-label>Correo</mat-label>
+          <mat-label>email</mat-label>
           <input matInput [ngClass]="{ 'is-invalid': correoControl.invalid && correoControl.touched}"
             [formControl]="correoControl" class="form-control" />
           <div *ngIf="correoControl.hasError('required') && correoControl.touched" class="invalid-feedback">
@@ -25,7 +25,7 @@
         <td>
       </table>
       <mat-form-field >
-        <mat-label>Contrasena</mat-label>
+        <mat-label>password</mat-label>
         <input matInput [ngClass]="{ 'is-invalid': contrasenaControl.invalid && contrasenaControl.touched}"
           [formControl]="contrasenaControl" class="form-control" />
         <div *ngIf="contrasenaControl.hasError('required') && contrasenaControl.touched" class="invalid-feedback">

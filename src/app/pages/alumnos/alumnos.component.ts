@@ -22,7 +22,7 @@ export class AlumnosComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
     'nombreCompleto',
-    'correo',
+    'email',
     'pais',
     'fecha_registro',
     'acciones',

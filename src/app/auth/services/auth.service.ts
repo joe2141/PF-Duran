@@ -42,7 +42,7 @@ export class AuthService {
           this.authUser$.next(usuarioAutenticado);
           this.router.navigate(['dashboard']);
         } else {
-          alert('¡Usuario y contraseña incorrectos!')
+          alert('¡Usuario y password incorrectos!')
         }
       }
     });

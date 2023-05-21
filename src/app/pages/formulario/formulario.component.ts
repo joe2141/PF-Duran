@@ -46,7 +46,7 @@ export class FormularioComponent {
   alumnoForms = new FormGroup({
     nombre: this.nombreControl,
     apellido: this.apellidoControl,
-    correo: this.emailControl,
+    email: this.emailControl,
     curso: this.cursoControl,
     pais: this.paisControl
   })

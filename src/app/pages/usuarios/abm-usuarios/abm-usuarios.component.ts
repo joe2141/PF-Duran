@@ -15,8 +15,8 @@ export class AbmUsuariosComponent {
 
   usuarioFrom = new FormGroup({
     nombre: this.nombreControl,
-    correo: this.correoControl,
-    contrasena: this.contrasenaControl,
+    email: this.correoControl,
+    password: this.contrasenaControl,
   })
   constructor(
     private dialogRef: MatDialogRef<AbmUsuariosComponent>,
@@ -25,8 +25,8 @@ export class AbmUsuariosComponent {
     if (data) {
       const usuarioParaEditar = data.usuario;
       this.nombreControl.setValue(usuarioParaEditar.nombre);
-      this.correoControl.setValue(usuarioParaEditar.correo);
-      this.contrasenaControl.setValue(usuarioParaEditar.contrasena);
+      this.correoControl.setValue(usuarioParaEditar.email);
+      this.contrasenaControl.setValue(usuarioParaEditar.password);
     }
   }
 

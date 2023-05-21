@@ -17,6 +17,13 @@
       "password": "12334",
       "token": "fjkhasdjkfhashjkHKJHJKHklikl45io23l4523j4h3",
       "role": "user"
+    },
+    {
+      "nombre": "asda",
+      "email": "asdasd@asdas",
+      "password": "asdasdas",
+      "token": "IDf2BjbiskWoLHwYWvUsJ3ASGW1vQuHN",
+      "id": 3
     }
   ],
   "alumnos": [
@@ -24,7 +31,7 @@
       "id": 1,
       "nombre": "Victorine",
       "apellido": "Vilmantė",
-      "correo": "victorine@mail.com",
+      "email": "victorine@mail.com",
       "pais": "Argentina",
       "fecha_registro": "2023-04-27T01:27:59.631Z"
     },
@@ -32,14 +39,14 @@
       "id": 2,
       "nombre": "alkapone",
       "apellido": "Alia",
-      "correo": "alhajialia@mail.com",
+      "email": "alhajialia@mail.com",
       "pais": "India",
       "fecha_registro": "2023-04-27T01:27:59.631Z"
     },
     {
       "nombre": "Edurne",
       "apellido": "Carballo",
-      "correo": "edurne@mail.com",
+      "email": "edurne@mail.com",
       "pais": "peruo",
       "fecha_registro": "2023-05-18T16:14:46.112Z",
       "id": 3

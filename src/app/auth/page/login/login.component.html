@@ -9,7 +9,7 @@
   </div>
   <div class="field">
     <mat-form-field class="w-full">
-      <mat-label>Contraseña</mat-label>
+      <mat-label>password</mat-label>
       <input [formControl]="passwordControl" type="password" matInput />
       <mat-error *ngFor="let error of emailControl.errors | keyvalue">{{ error }}</mat-error>
     </mat-form-field>

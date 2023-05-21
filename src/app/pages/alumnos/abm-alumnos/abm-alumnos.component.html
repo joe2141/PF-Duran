@@ -24,7 +24,7 @@
     <table class="width" cellspacing="0">
       <td>
         <mat-form-field class="width">
-          <mat-label>Correo</mat-label>
+          <mat-label>email</mat-label>
           <input matInput [ngClass]="{ 'is-invalid': emailControl.invalid && emailControl.touched}"
             [formControl]="emailControl" class="form-control" />
           <div *ngIf="emailControl.hasError('required') && emailControl.touched" class="invalid-feedback">

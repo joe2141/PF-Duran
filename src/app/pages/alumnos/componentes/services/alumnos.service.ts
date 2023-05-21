@@ -12,7 +12,7 @@ export class AlumnosService {
       id: 1,
       nombre: 'Paulino',
       apellido: 'Canto',
-      correo: 'canto@mail.com',
+      email: 'canto@mail.com',
       pais: 'Argentina',
       fecha_registro: new Date(),
       acciones: ''
@@ -21,7 +21,7 @@ export class AlumnosService {
       id: 2,
       nombre: 'Anna',
       apellido: 'San-Jose',
-      correo: ' san-Jose@mail.com',
+      email: ' san-Jose@mail.com',
       pais: 'Uruguay',
       fecha_registro: new Date(),
       acciones: ''
@@ -30,7 +30,7 @@ export class AlumnosService {
       id: 3,
       nombre: 'Ramiro',
       apellido: 'Espada',
-      correo: 'sspada@mail.com',
+      email: 'sspada@mail.com',
       pais: 'Brazil',
       fecha_registro: new Date(),
       acciones: ''
@@ -39,7 +39,7 @@ export class AlumnosService {
       id: 4,
       nombre: 'Pamela',
       apellido: 'Rueda',
-      correo: 'rueda@mail.com',
+      email: 'rueda@mail.com',
       pais: 'Chile',
       fecha_registro: new Date(),
       acciones: ''
@@ -48,7 +48,7 @@ export class AlumnosService {
       id: 5,
       nombre: 'Martha',
       apellido: 'Ahmed',
-      correo: 'marthmed@mail.com',
+      email: 'marthmed@mail.com',
       pais: 'Peru',
       fecha_registro: new Date(),
       acciones: ''
@@ -57,7 +57,7 @@ export class AlumnosService {
       id: 6,
       nombre: 'Mireia',
       apellido: 'Santamaria',
-      correo: 'mirantamaria@mail.com',
+      email: 'mirantamaria@mail.com',
       pais: 'Argentina',
       fecha_registro: new Date(),
       acciones: ''

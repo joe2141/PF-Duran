@@ -1,93 +1,54 @@
 import { Injectable } from '@angular/core';
 import { CrearUsuarioPayload, Usuario } from './models/indesx';
-import { BehaviorSubject, Observable, map, take } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-const CURSOS_MOCKS: Usuario[] = [
-  {
-    id: 1,
-    nombre: 'joel',
-    correo: 'joel@mail.com',
-    contrasena: '123456',
-    role: 'admin'
-  },
-  {
-    id: 2,
-    nombre: 'Marty',
-    correo: 'marty@email.com',
-    contrasena: '12334',
-    role: 'user'
-  },
-];
+import { enviroment } from '../../../../environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
-export class usuarioService {
-  private usuarios$ = new BehaviorSubject<Usuario[]>([]);
+export class UsuarioService {
+  private apiUrl = `${enviroment.apiBaseUrl}/usuarios`;
 
   constructor(private http: HttpClient) { }
-  obtenerUsuarios(): Observable<Usuario[]> {
-    this.usuarios$.next(CURSOS_MOCKS);
-    return this.usuarios$.asObservable();
-  }
 
+  obtenerUsuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.apiUrl);
+  }
 
   getUsuarioById(usuarioId: number): Observable<Usuario | undefined> {
-    return this.usuarios$.asObservable()
-      .pipe(
-        map((usuarios) => usuarios.find((c) => c.id === usuarioId))
-      )
+    return this.http.get<Usuario>(`${this.apiUrl}/${usuarioId}`);
   }
 
-  crearUsuario(payload: CrearUsuarioPayload): Observable<Usuario[]> {
-    this.usuarios$.pipe(take(1)).subscribe({
-      next: (usuarios) => {
-        this.usuarios$.next([
-          ...usuarios,
-          {
-            id: usuarios.length + 1,
-            ...payload,
-          },
-        ]);
-      },
-    });
-    return this.usuarios$.asObservable();
+  crearUsuario(usuario: Usuario): Observable<Usuario> {
+    const nuevoUsuario: Usuario = {
+      ...usuario,
+      token: this.generarTokenAleatorio()
+    };
+    return this.http.post<Usuario>(this.apiUrl, nuevoUsuario);
   }
 
-  editarUsuario(
-    usuarioId: number,
-    actualizacion: Partial<Usuario>
-  ): Observable<Usuario[]> {
-    this.usuarios$.pipe(take(1)).subscribe({
-      next: (usuarios) => {
-        const cursosActualizados = usuarios.map((usuario) => {
-          if (usuario.id === usuarioId) {
-            return {
-              ...usuario,
-              ...actualizacion,
-            };
-          } else {
-            return usuario;
-          }
-        });
-        this.usuarios$.next(cursosActualizados);
-      },
-    });
-    return this.usuarios$.asObservable();
+  editarUsuario(usuarioId: number, actualizacion: Partial<Usuario>): Observable<Usuario> {
+    return this.http.patch<Usuario>(`${this.apiUrl}/${usuarioId}`, actualizacion);
   }
 
-  eliminarUsuario(usuarioId: number): Observable<Usuario[]> {
-    this.usuarios$
-      .pipe
-      (
-        take(1)
-      )
-      .subscribe({
-        next: (usuario) => {
-          const usuariosActualizados = usuario.filter((usuario) => usuario.id !== usuarioId)
-          this.usuarios$.next(usuariosActualizados);
-        },
-      });
-    return this.usuarios$.asObservable();
+  eliminarUsuario(usuarioId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${usuarioId}`);
+  }
+
+  private generarTokenAleatorio(): string {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const longitud = 32;
+    const array = new Uint8Array(longitud);
+    const caracteresLength = caracteres.length;
+
+    crypto.getRandomValues(array);
+
+    let resultado = '';
+    for (let i = 0; i < longitud; i++) {
+      resultado += caracteres.charAt(array[i] % caracteresLength);
+    }
+
+    return resultado;
   }
 }

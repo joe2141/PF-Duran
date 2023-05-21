@@ -49,7 +49,7 @@ export class AbmAlumnosComponent {
   alumnoForms = new FormGroup({
     nombre: this.nombreControl,
     apellido: this.apellidoControl,
-    correo: this.emailControl,
+    email: this.emailControl,
     pais: this.paisControl,
     fecha_registro: new FormControl()
   });
@@ -62,7 +62,7 @@ export class AbmAlumnosComponent {
     if (data) {
       this.nombreControl.setValue(data.alumnoParaEditar.nombre);
       this.apellidoControl.setValue(data.alumnoParaEditar.apellido);
-      this.emailControl.setValue(data.alumnoParaEditar.correo);
+      this.emailControl.setValue(data.alumnoParaEditar.email);
       this.paisControl.setValue(data.alumnoParaEditar.pais);
       this.fechaControl.setValue(data.alumnoParaEditar.fecha);
     }
