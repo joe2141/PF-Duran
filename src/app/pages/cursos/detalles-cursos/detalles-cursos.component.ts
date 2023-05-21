@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Inscripciones } from '../../inscripciones/componentes/models';
 import { MatDialog } from '@angular/material/dialog';
 import { Alumno } from '../../alumnos/componentes/models/index';
-import { InscripcionesService } from '../../inscripciones/componentes/services/cursos.service';
+import { InscripcionesService } from '../../inscripciones/componentes/services/inscripciones.service';
 
 @Component({
   selector: 'app-detalles-cursos',

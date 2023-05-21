@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Inscripciones } from './componentes/models';
-import { InscripcionesService } from './componentes/services/cursos.service';
+import { InscripcionesService } from './componentes/services/inscripciones.service';
 
 @Component({
   selector: 'app-inscripciones',

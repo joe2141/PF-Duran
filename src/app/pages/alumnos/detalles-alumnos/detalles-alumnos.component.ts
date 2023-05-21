@@ -5,7 +5,7 @@ import { Alumno } from '../componentes/models/index';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Inscripciones } from '../../inscripciones/componentes/models';
-import { InscripcionesService } from '../../inscripciones/componentes/services/cursos.service';
+import { InscripcionesService } from '../../inscripciones/componentes/services/inscripciones.service';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
