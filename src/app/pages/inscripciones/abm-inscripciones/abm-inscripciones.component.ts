@@ -44,13 +44,18 @@ export class AbmInscripcionesComponent {
 
   guardar(): void {
     if (this.inscripcionesForms.valid) {
-      const inscripcion = {
-        id: 3,
-        alumnoId: this.alumnoControl.value,
-        cursoId: this.cursoControl.value,
-        fecha_inscripcion: this.fechaControl.value
-      };
-      this.dialogRef.close(inscripcion);
+      this.inscripcionesService.obtenerInscripciones().subscribe((inscripciones) => {
+        const newId = inscripciones.length + 1;
+        const inscripcion = {
+          id: newId,
+          alumnoId: Number(this.alumnoControl.value),
+          cursoId: Number(this.cursoControl.value),
+          fecha_inscripcion: this.fechaControl.value as string // Modify type to 'string'
+        };
+        this.inscripcionesService.guardarInscripcion(inscripcion).subscribe((savedInscripcion) => {
+          this.dialogRef.close(savedInscripcion);
+        });
+      });
     } else {
       this.inscripcionesForms.markAllAsTouched();
     }
