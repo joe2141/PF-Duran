@@ -89,6 +89,11 @@
       "alumno": "Victorine",
       "curso": "Android",
       "fecha_inscripcion": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "curso": 1,
+      "fecha": "2023-05-23T06:00:00.000Z",
+      "id": 4
     }
   ]
 }

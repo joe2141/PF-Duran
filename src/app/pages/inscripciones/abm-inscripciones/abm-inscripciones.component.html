@@ -5,9 +5,10 @@
       <td>
         <mat-form-field class="width">
           <mat-label>Nombre del alumno</mat-label>
-          <input matInput [ngClass]="{ 'is-invalid': nombreControl.invalid && nombreControl.touched}"
-            [formControl]="nombreControl" class="form-control" />
-          <div *ngIf="nombreControl.hasError('required') && nombreControl.touched" class="invalid-feedback">
+          <mat-select [formControl]="alumnoControl" class="form-control">
+            <mat-option *ngFor="let alumno of alumnos" [value]="alumno.id">{{ alumno.nombre }}</mat-option>
+          </mat-select>
+          <div *ngIf="alumnoControl.hasError('required') && alumnoControl.touched" class="invalid-feedback">
             Este campo es obligatorio
           </div>
         </mat-form-field>
@@ -15,9 +16,12 @@
       <td>
         <mat-form-field class="width">
           <mat-label>Curso</mat-label>
-          <input matInput [ngClass]="{ 'is-invalid': nombreControl.invalid && nombreControl.touched}"
-            [formControl]="nombreControl" class="form-control" />
-          <div *ngIf="nombreControl.hasError('required') && nombreControl.touched" class="invalid-feedback">
+          <mat-select [formControl]="cursoControl" class="form-control">
+            <mat-option *ngFor="let curso of cursos" [value]="curso.id">
+              {{ curso.nombre }}
+            </mat-option>
+          </mat-select>
+          <div *ngIf="cursoControl.hasError('required') && cursoControl.touched" class="invalid-feedback">
             Este campo es obligatorio
           </div>
         </mat-form-field>

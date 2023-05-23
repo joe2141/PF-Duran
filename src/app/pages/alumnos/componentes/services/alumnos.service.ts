@@ -1,80 +1,41 @@
 import { Injectable } from '@angular/core';
 import { Alumno } from '../models/index';
 import { BehaviorSubject, Observable, map, } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { enviroment } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlumnosService {
+  private alumnos$: BehaviorSubject<Alumno[]> = new BehaviorSubject<Alumno[]>([]);
 
-  private estudiantes$ = new BehaviorSubject<Alumno[]>([
-    {
-      id: 1,
-      nombre: 'Paulino',
-      apellido: 'Canto',
-      email: 'canto@mail.com',
-      pais: 'Argentina',
-      fecha_registro: new Date(),
-      acciones: ''
-    },
-    {
-      id: 2,
-      nombre: 'Anna',
-      apellido: 'San-Jose',
-      email: ' san-Jose@mail.com',
-      pais: 'Uruguay',
-      fecha_registro: new Date(),
-      acciones: ''
-    },
-    {
-      id: 3,
-      nombre: 'Ramiro',
-      apellido: 'Espada',
-      email: 'sspada@mail.com',
-      pais: 'Brazil',
-      fecha_registro: new Date(),
-      acciones: ''
-    },
-    {
-      id: 4,
-      nombre: 'Pamela',
-      apellido: 'Rueda',
-      email: 'rueda@mail.com',
-      pais: 'Chile',
-      fecha_registro: new Date(),
-      acciones: ''
-    },
-    {
-      id: 5,
-      nombre: 'Martha',
-      apellido: 'Ahmed',
-      email: 'marthmed@mail.com',
-      pais: 'Peru',
-      fecha_registro: new Date(),
-      acciones: ''
-    },
-    {
-      id: 6,
-      nombre: 'Mireia',
-      apellido: 'Santamaria',
-      email: 'mirantamaria@mail.com',
-      pais: 'Argentina',
-      fecha_registro: new Date(),
-      acciones: ''
-    },
-  ])
-
-  constructor() { }
+  constructor(
+    private http: HttpClient
+    ) {
+    this.fetchAlumnos();
+  }
 
   obtenerAlumnos(): Observable<Alumno[]> {
-    return this.estudiantes$.asObservable();
+    return this.alumnos$.asObservable();
   }
 
-  obtenerAlumnoPorId(id: number): Observable<Alumno | undefined>{
-    return this.estudiantes$.asObservable()
-    .pipe(
-      map((alumnos) => alumnos.find((a) => a.id === id))
-    )
+  private fetchAlumnos() {
+    this.http
+      .get<Alumno[]>(`${enviroment.apiBaseUrl}/alumnos`)
+      .subscribe(
+        (alumnos) => {
+          this.alumnos$.next(alumnos);
+        },
+        (error) => {
+          console.log('Error al obtener los alumnos:', error);
+        }
+      );
   }
 
+  obtenerAlumnoPorId(id: number): Observable<Alumno | undefined> {
+    return this.alumnos$.asObservable().pipe(
+      map((alumnos) => alumnos.find((a: Alumno) => a.id === id))
+    );
+  }
 }
