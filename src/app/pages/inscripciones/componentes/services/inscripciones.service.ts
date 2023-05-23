@@ -1,25 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Inscripciones } from '../models/index';
-import { BehaviorSubject, Observable, map, } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Inscripciones } from '../models';
 import { enviroment } from '../../../../../environments/environments';
 
-@Injectable({
-    providedIn: 'root'
-})
+const baseUrl = `${enviroment.apiBaseUrl}/dashboard/inscripciones` // Reemplaza esto con la URL de tu API
 
+@Injectable({
+  providedIn: 'root'
+})
 export class InscripcionesService {
   private inscripciones$: BehaviorSubject<Inscripciones[]> = new BehaviorSubject<Inscripciones[]>([]);
 
   constructor(private http: HttpClient) {
-    this.fetchInscripciones(); // Llamar al método para obtener las inscripciones al iniciar el servicio
+    this.obtenerInscripciones().subscribe((inscripciones) => {
+      this.inscripciones$.next(inscripciones);
+    });
   }
 
   obtenerInscripciones(): Observable<Inscripciones[]> {
-    return this.inscripciones$.asObservable();
+    return this.http.get<Inscripciones[]>(baseUrl + '/inscripciones');
   }
 
-  obtenerInscripcionesPorId(id: number): Observable<Inscripciones | undefined> {
+  obtenerInscripcionPorId(id: number): Observable<Inscripciones | undefined> {
     return this.inscripciones$.asObservable().pipe(
       map((inscripciones) => inscripciones.find((a: Inscripciones) => a.id === id))
     );
@@ -38,19 +42,6 @@ export class InscripcionesService {
   }
 
   guardarInscripcion(inscripcion: Inscripciones): Observable<Inscripciones> {
-    return this.http.post<Inscripciones>(`${enviroment.apiBaseUrl}/inscripciones`, inscripcion);
-  }
-
-  private fetchInscripciones() {
-    this.http
-      .get<Inscripciones[]>(`${enviroment.apiBaseUrl}/inscripciones`)
-      .subscribe(
-        (inscripciones) => {
-          this.inscripciones$.next(inscripciones);
-        },
-        (error) => {
-          console.log('Error al obtener las inscripciones:', error);
-        }
-      );
+    return this.http.post<Inscripciones>(baseUrl + '/inscripciones', inscripcion);
   }
 }
