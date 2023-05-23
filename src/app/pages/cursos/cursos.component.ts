@@ -64,9 +64,7 @@ export class CursosComponent implements OnInit {
 
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {
-        // Guardar el nuevo curso en la base de datos
         this.http.post<Curso>('http://localhost:3000/cursos', valor).subscribe((nuevoCurso: Curso) => {
-          // Actualizar la tabla de datos con el nuevo curso
           this.dataSource.data = [...this.dataSource.data, nuevoCurso];
         });
       }
@@ -76,7 +74,7 @@ export class CursosComponent implements OnInit {
   editarCurso(curso: Curso): void {
     const dialog = this.dialog.open(AbmCursosComponent, {
       data: {
-        curso: curso,  
+        curso: curso,
       },
     });
 
@@ -84,7 +82,6 @@ export class CursosComponent implements OnInit {
       if (dataDelCursoEditado) {
         const url = `http://localhost:3000/cursos/${curso.id}`;
         this.http.put(url, dataDelCursoEditado).subscribe(() => {
-          // Actualizar el curso modificado en la tabla de datos
           const index = this.dataSource.data.findIndex((c) => c.id === curso.id);
           if (index !== -1) {
             this.dataSource.data[index] = { ...curso, ...dataDelCursoEditado };
@@ -98,8 +95,6 @@ export class CursosComponent implements OnInit {
   eliminarCurso(curso: Curso): void {
     if (confirm('¿Está seguro?')) {
       this.cursosService.eliminarCurso(curso.id).subscribe(() => {
-        // Realiza acciones adicionales después de la eliminación del curso, si es necesario
-        // Por ejemplo, puedes eliminar el curso de la lista de cursos en el componente
         this.dataSource.data = this.dataSource.data.filter((c) => c.id !== curso.id);
       });
     }

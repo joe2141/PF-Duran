@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { AlumnosService } from '../alumnos/componentes/services/alumnos.service';
 import { CursosService } from '../cursos/Componentes/services/cursos.service';
+import { Curso } from '../cursos/Componentes/models';
 
 @Component({
   selector: 'app-inscripciones',
@@ -29,9 +30,6 @@ export class InscripcionesComponent implements OnInit {
     private cursosService: CursosService
   ) {
     this.authUser$ = this.authService.obtenerUsuarioAutenticado();
-    this.inscripcionesService.obtenerInscripciones().subscribe((inscripciones) => {
-      this.dataSource.data = inscripciones;
-    });
   }
 
   aplicarFiltros(ev: Event): void {
@@ -58,7 +56,7 @@ export class InscripcionesComponent implements OnInit {
         this.alumnosService.obtenerAlumnoPorId(inscripcion.alumnoId).subscribe((alumno) => {
           inscripcion.alumno = alumno;
         });
-        this.cursosService.obtenerCursos().subscribe((cursos) => {
+        this.cursosService.obtenerCursos().subscribe((cursos: Curso[]) => {
           const cursoEncontrado = cursos.find(curso => curso.id === inscripcion.cursoId);
           if (cursoEncontrado) {
             inscripcion.curso = cursoEncontrado;

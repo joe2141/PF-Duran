@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Inscripciones } from '../models';
 import { enviroment } from '../../../../../environments/environments';
 
-const baseUrl = `${enviroment.apiBaseUrl}/dashboard/inscripciones` // Reemplaza esto con la URL de tu API
+const baseUrl = `${enviroment.apiBaseUrl}/inscripciones`;
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class InscripcionesService {
   }
 
   obtenerInscripciones(): Observable<Inscripciones[]> {
-    return this.http.get<Inscripciones[]>(baseUrl + '/inscripciones');
+    return this.http.get<Inscripciones[]>(baseUrl);
   }
 
   obtenerInscripcionPorId(id: number): Observable<Inscripciones | undefined> {
@@ -42,6 +42,6 @@ export class InscripcionesService {
   }
 
   guardarInscripcion(inscripcion: Inscripciones): Observable<Inscripciones> {
-    return this.http.post<Inscripciones>(baseUrl + '/inscripciones', inscripcion);
+    return this.http.post<Inscripciones>(baseUrl, inscripcion);
   }
 }

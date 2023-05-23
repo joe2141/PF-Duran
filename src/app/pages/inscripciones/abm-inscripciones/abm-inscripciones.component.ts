@@ -44,7 +44,13 @@ export class AbmInscripcionesComponent {
 
   guardar(): void {
     if (this.inscripcionesForms.valid) {
-      this.dialogRef.close(this.inscripcionesForms.value);
+      const inscripcion = {
+        id: 3,
+        alumnoId: this.alumnoControl.value,
+        cursoId: this.cursoControl.value,
+        fecha_inscripcion: this.fechaControl.value
+      };
+      this.dialogRef.close(inscripcion);
     } else {
       this.inscripcionesForms.markAllAsTouched();
     }
