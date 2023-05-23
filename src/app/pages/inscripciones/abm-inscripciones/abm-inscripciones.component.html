@@ -4,7 +4,17 @@
     <table class="width" cellspacing="0">
       <td>
         <mat-form-field class="width">
-          <mat-label>Nombre</mat-label>
+          <mat-label>Nombre del alumno</mat-label>
+          <input matInput [ngClass]="{ 'is-invalid': nombreControl.invalid && nombreControl.touched}"
+            [formControl]="nombreControl" class="form-control" />
+          <div *ngIf="nombreControl.hasError('required') && nombreControl.touched" class="invalid-feedback">
+            Este campo es obligatorio
+          </div>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="width">
+          <mat-label>Curso</mat-label>
           <input matInput [ngClass]="{ 'is-invalid': nombreControl.invalid && nombreControl.touched}"
             [formControl]="nombreControl" class="form-control" />
           <div *ngIf="nombreControl.hasError('required') && nombreControl.touched" class="invalid-feedback">
@@ -13,6 +23,22 @@
         </mat-form-field>
       </td>
     </table>
+    <table>
+      <tr>
+        <td>
+          <mat-form-field class="width">
+            <mat-label>Fecha de inscripción</mat-label>
+            <input matInput [ngClass]="{ 'is-invalid': fechaControl.invalid && fechaControl.touched}"
+              [formControl]="fechaControl" class="form-control" [matDatepicker]="fechaInscripcionPicker" />
+            <mat-datepicker-toggle matSuffix [for]="fechaInscripcionPicker"></mat-datepicker-toggle>
+            <mat-datepicker #fechaInscripcionPicker></mat-datepicker>
+            <div *ngIf="fechaControl.hasError('required') && fechaControl.touched" class="invalid-feedback">
+              Este campo es obligatorio
+            </div>
+          </mat-form-field>
+        </td>
+      </tr>
+      </table>
   </form>
 
   <div mat-dialog-action>

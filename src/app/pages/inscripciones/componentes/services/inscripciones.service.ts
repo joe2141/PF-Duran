@@ -9,8 +9,7 @@ import { enviroment } from '../../../../../environments/environments';
 })
 
 export class InscripcionesService {
-
-  private inscripciones$ = new BehaviorSubject<Inscripciones[]>([]);
+  private inscripciones$: BehaviorSubject<Inscripciones[]> = new BehaviorSubject<Inscripciones[]>([]);
 
   constructor(private http: HttpClient) {
     this.fetchInscripciones(); // Llamar al método para obtener las inscripciones al iniciar el servicio
@@ -21,28 +20,30 @@ export class InscripcionesService {
   }
 
   obtenerInscripcionesPorId(id: number): Observable<Inscripciones | undefined> {
-    return this.inscripciones$.asObservable()
-      .pipe(
-        map((inscripciones) => inscripciones.find((a) => a.id === id))
-      );
+    return this.inscripciones$.asObservable().pipe(
+      map((inscripciones) => inscripciones.find((a: Inscripciones) => a.id === id))
+    );
   }
 
   obtenerInscripcionesPorAlumnoId(id: number): Observable<Inscripciones[]> {
-    return this.inscripciones$.asObservable()
-      .pipe(
-        map((inscripciones) => inscripciones.filter((a) => a.alumnoId === id))
-      );
+    return this.inscripciones$.asObservable().pipe(
+      map((inscripciones) => inscripciones.filter((a: Inscripciones) => a.alumnoId === id))
+    );
   }
 
   obtenerInscripcionesPorCursoId(id: number): Observable<Inscripciones[]> {
-    return this.inscripciones$.asObservable()
-      .pipe(
-        map((inscripciones) => inscripciones.filter((a) => a.cursoId === id))
-      );
+    return this.inscripciones$.asObservable().pipe(
+      map((inscripciones) => inscripciones.filter((a: Inscripciones) => a.cursoId === id))
+    );
+  }
+
+  guardarInscripcion(inscripcion: Inscripciones): Observable<Inscripciones> {
+    return this.http.post<Inscripciones>(`${enviroment.apiBaseUrl}/inscripciones`, inscripcion);
   }
 
   private fetchInscripciones() {
-    this.http.get<Inscripciones[]>(`${enviroment.apiBaseUrl}/inscripciones`)
+    this.http
+      .get<Inscripciones[]>(`${enviroment.apiBaseUrl}/inscripciones`)
       .subscribe(
         (inscripciones) => {
           this.inscripciones$.next(inscripciones);

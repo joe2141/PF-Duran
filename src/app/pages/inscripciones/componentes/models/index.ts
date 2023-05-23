@@ -4,6 +4,6 @@ export interface Inscripciones {
   cursoId: number;
   alumno: string;
   curso: string;
-  fecha_inicio: Date;
+  fecha_inscripcion: Date;
 }
 

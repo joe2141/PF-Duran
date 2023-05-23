@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { InscripcionesComponent } from '../inscripciones/inscripciones.component';
 import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones.component';
 import { RouterModule } from '@angular/router';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 
@@ -38,6 +39,7 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
     ReactiveFormsModule,
     MatOptionModule,
+    MatDatepickerModule,
     MatSelectModule,
     RouterModule.forChild([
       {

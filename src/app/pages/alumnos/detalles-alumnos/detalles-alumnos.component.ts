@@ -19,7 +19,7 @@ export class DetallesAlumnosComponent implements OnDestroy {
   private destroyed$ = new Subject()
   dataSource = new MatTableDataSource<Inscripciones>();
 
-  displayedColumns: string[] = ['id', 'curso', 'fecha_inicio', 'desuscribir']
+  displayedColumns: string[] = ['id', 'curso', 'fecha_inscripcion', 'desuscribir']
 
   aplicarFiltros(ev: Event): void {
     const inputValue = (ev.target as HTMLInputElement)?.value;

@@ -10,15 +10,14 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./abm-inscripciones.component.scss']
 })
 export class AbmInscripcionesComponent {
-  nombreControl = new FormControl('',
-    [
-      Validators.required,
-      Validators.minLength(3),
-    ]
-  );
+  nombreControl = new FormControl('', [Validators.required, Validators.minLength(3),]);
+  cursoControl = new FormControl('',[Validators.required,Validators.minLength(3),]);
+  fechaControl = new FormControl('',[Validators.required,]);
 
   inscripcionesForms = new FormGroup({
     nombre: this.nombreControl,
+    curso: this.cursoControl,
+    fecha: this.fechaControl
   })
 
   constructor(
@@ -32,11 +31,10 @@ export class AbmInscripcionesComponent {
 
   guardar(): void {
     if (this.inscripcionesForms.valid) {
-      this.dialogRef.close(this.inscripcionesForms.value)
+      this.dialogRef.close(this.inscripcionesForms.value);
     } else {
       this.inscripcionesForms.markAllAsTouched();
     }
-
   }
 
 }

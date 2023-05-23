@@ -72,7 +72,7 @@
       "cursoId": 1,
       "alumno": "Victorine",
       "curso": "Angular",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "fecha_inscripcion": "2023-04-27T01:27:59.631Z"
     },
     {
       "id": 2,
@@ -80,7 +80,7 @@
       "cursoId": 2,
       "alumno": "Victorine",
       "curso": "React",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "fecha_inscripcion": "2023-04-27T01:27:59.631Z"
     },
     {
       "id": 3,
@@ -88,7 +88,7 @@
       "cursoId": 3,
       "alumno": "Victorine",
       "curso": "Android",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "fecha_inscripcion": "2023-04-27T01:27:59.631Z"
     }
   ]
 }
