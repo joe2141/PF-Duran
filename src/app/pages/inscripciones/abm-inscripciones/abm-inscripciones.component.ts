@@ -50,10 +50,11 @@ export class AbmInscripcionesComponent {
           id: newId,
           alumnoId: Number(this.alumnoControl.value),
           cursoId: Number(this.cursoControl.value),
-          fecha_inscripcion: this.fechaControl.value as string // Modify type to 'string'
+          fecha_inscripcion: this.fechaControl.value as string
         };
         this.inscripcionesService.guardarInscripcion(inscripcion).subscribe((savedInscripcion) => {
           this.dialogRef.close(savedInscripcion);
+          location.reload();
         });
       });
     } else {
