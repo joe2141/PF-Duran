@@ -50,6 +50,10 @@ export class InscripcionesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authUser$ = this.authService.obtenerUsuarioAutenticado();
+  this.authUser$.subscribe((user) => {
+    this.role = user?.role;
+  });
     this.inscripcionesService.obtenerInscripciones().subscribe((inscripciones) => {
       this.dataSource.data = inscripciones;
       for (const inscripcion of inscripciones) {
