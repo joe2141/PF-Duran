@@ -41,6 +41,11 @@ export class InscripcionesService {
     );
   }
 
+  eliminarInscripcion(id: number): Observable<void> {
+    const url = `${baseUrl}/${id}`;
+    return this.http.delete<void>(url);
+  }
+
   guardarInscripcion(inscripcion: Inscripciones): Observable<Inscripciones> {
     return this.http.post<Inscripciones>(baseUrl, inscripcion);
   }

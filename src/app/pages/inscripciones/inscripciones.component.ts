@@ -70,6 +70,17 @@ export class InscripcionesComponent implements OnInit {
     });
   }
 
+  eliminarInscripcion(inscripcionId: number): void {
+    if (!confirm('¿Estás seguro de que deseas eliminar esta inscripción?')) {
+      return;
+    }
+
+    this.inscripcionesService.eliminarInscripcion(inscripcionId).subscribe(() => {
+      const updatedData = this.dataSource.data.filter((inscripcion) => inscripcion.id !== inscripcionId);
+      this.dataSource.data = updatedData;
+    });
+  }
+
   isAdminUser(): boolean {
     return this.role === 'admin';
   }

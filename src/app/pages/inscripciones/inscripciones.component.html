@@ -35,7 +35,7 @@
   <ng-container matColumnDef="acciones">acciones
     <th mat-header-cell *matHeaderCellDef appFontSize>Acciones</th>
     <td mat-cell *matCellDef="let inscripciones">
-      <button mat-icon-button *ngIf="isAdminUser()">
+      <button mat-icon-button (click)="eliminarInscripcion(inscripciones.id)" *ngIf="isAdminUser()">
         <mat-icon>delete</mat-icon>
       </button>
     </td>
