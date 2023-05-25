@@ -40,4 +40,16 @@ export class DetallesCursosComponent {
       );
     }
   }
+  eliminarInscripcion(inscripcion: Inscripciones): void {
+    if (!confirm('¿Estás seguro de que deseas eliminar esta inscripción?')) {
+      return;
+    }
+    this.inscripcionesService
+      .eliminarInscripcion(inscripcion.id)
+      .subscribe(() => {
+        this.dataSource.data = this.dataSource.data.filter((x) => x.id !== inscripcion.id);
+      });
+    }
+
+
 }
