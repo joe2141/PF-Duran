@@ -30,8 +30,7 @@
 
     <ng-container matColumnDef="curso">
       <th mat-header-cell *matHeaderCellDef appFontSize> Curso </th>
-      <td mat-cell *matCellDef="let inscripcion">
-        {{inscripcion.curso }}
+      <td mat-cell *matCellDef="let inscripcion">{{ obtenerNombreDelCursoPorId(inscripcion.cursoId) }}
       </td>
     </ng-container>
 

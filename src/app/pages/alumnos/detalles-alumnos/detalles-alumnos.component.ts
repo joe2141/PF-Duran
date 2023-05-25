@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Inscripciones } from '../../inscripciones/componentes/models';
 import { InscripcionesService } from '../../inscripciones/componentes/services/inscripciones.service';
 import { Subject, takeUntil } from 'rxjs';
+import { CursosService } from '../../cursos/Componentes/services/cursos.service';
 
 @Component({
   selector: 'app-detalles-alumnos',
@@ -16,6 +17,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class DetallesAlumnosComponent implements OnInit, OnDestroy {
   alumno: Alumno | undefined;
   inscripciones: Inscripciones[] | undefined;
+  cursos: any[] = [];
 
   private destroyed$ = new Subject();
   dataSource = new MatTableDataSource<Inscripciones>();
@@ -32,9 +34,13 @@ export class DetallesAlumnosComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private inscripcionesService: InscripcionesService,
     private alumnosServices: AlumnosService,
+    private cursosService: CursosService,
   ) {}
 
   ngOnInit(): void {
+    this.cursosService.obtenerCursos().subscribe(cursos => {
+      this.cursos = cursos;
+    });
     this.inscripcionesService
       .obtenerInscripciones()
       .subscribe((inscripciones) => {
@@ -59,6 +65,11 @@ export class DetallesAlumnosComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.dataSource.data = this.dataSource.data.filter((x) => x.id !== inscripcion.id);
       });
+  }
+
+  obtenerNombreDelCursoPorId(cursoId: number): string {
+    const curso = this.cursos.find(c => c.id === cursoId);
+    return curso ? curso.nombre : '';
   }
 
   ngOnDestroy(): void {
