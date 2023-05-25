@@ -69,7 +69,6 @@ export class UsuariosComponent implements OnInit {
   eliminarUsuario(usuario: Usuario): void {
     if (confirm('¿Está seguro?')) {
       this.usuariosService.eliminarUsuario(usuario.id).subscribe(() => {
-        // Eliminar el usuario de la tabla de datos
         this.dataSource.data = this.dataSource.data.filter((u) => u.id !== usuario.id);
       });
     }

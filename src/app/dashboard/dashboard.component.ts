@@ -90,7 +90,7 @@ export class DashboardComponent implements OnInit {
 verifyRole(link: NavItem): Observable<boolean> {
   return this.authUser$.pipe(
     map((usuarioAuth) =>
-      link.allowedRoles.some((r) => r === usuarioAuth?.role) // true | false
+      link.allowedRoles.some((r) => r === usuarioAuth?.role) 
     )
   );
 }
