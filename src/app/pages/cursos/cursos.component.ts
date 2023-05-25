@@ -50,13 +50,13 @@ export class CursosComponent implements OnInit {
       }
     });
 
-    console.log("Antes de llamar a obtenerCursos()");
+
 
     this.cursosService.obtenerCursos().subscribe((cursos: Curso[]) => {
       this.dataSource.data = cursos;
     });
 
-    console.log("Después de llamar a obtenerCursos()");
+
   }
 
   abrirABMCursos(): void {

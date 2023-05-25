@@ -27,9 +27,7 @@ export class AlumnosService {
         (alumnos) => {
           this.alumnos$.next(alumnos);
         },
-        (error) => {
-          console.log('Error al obtener los alumnos:', error);
-        }
+
       );
   }
 
