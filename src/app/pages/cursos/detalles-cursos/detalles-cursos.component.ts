@@ -5,6 +5,8 @@ import { Inscripciones } from '../../inscripciones/componentes/models';
 import { MatDialog } from '@angular/material/dialog';
 import { Alumno } from '../../alumnos/componentes/models/index';
 import { InscripcionesService } from '../../inscripciones/componentes/services/inscripciones.service';
+import { CursosService } from '../Componentes/services/cursos.service';
+import { AlumnosService } from '../../alumnos/componentes/services/alumnos.service';
 
 @Component({
   selector: 'app-detalles-cursos',
@@ -12,6 +14,8 @@ import { InscripcionesService } from '../../inscripciones/componentes/services/i
   styleUrls: ['./detalles-cursos.component.scss']
 })
 export class DetallesCursosComponent {
+  cursos: any[] = [];
+  alumno: any[] = [];
 
   dataSource = new MatTableDataSource<Inscripciones>();
 
@@ -24,9 +28,17 @@ export class DetallesCursosComponent {
 
   constructor(private matDialog: MatDialog,
     private activatedRoute: ActivatedRoute,
-    private inscripcionesService: InscripcionesService
-  ) {
-
+    private inscripcionesService: InscripcionesService,
+    private cursosService: CursosService,
+    private alumnosService: AlumnosService,
+  ) {}
+  ngOnInit(): void {
+    this.cursosService.obtenerCursos().subscribe(cursos => {
+      this.cursos = cursos;
+    });
+    this.alumnosService.obtenerAlumnos().subscribe(alumno => {
+      this.alumno = alumno;
+    });
     this.inscripcionesService.obtenerInscripciones()
       .subscribe((inscripciones) => {
         this.dataSource.data = inscripciones.filter(x => x.cursoId === parseInt(this.activatedRoute.snapshot.params['id']));
@@ -50,6 +62,13 @@ export class DetallesCursosComponent {
         this.dataSource.data = this.dataSource.data.filter((x) => x.id !== inscripcion.id);
       });
     }
-
+    obtenerFechaDeInicioporId(cursoId: number): string {
+      const curso = this.cursos.find(c => c.id === cursoId);
+      return curso ? curso.fecha_inicio : '';
+    }
+    obtenerNombreDelAlumnoporId(alumnoId: number): string {
+      const alumno = this.alumno.find(a => a.id === alumnoId);
+      return alumno ? alumno.nombre : '';
+    }
 
 }
