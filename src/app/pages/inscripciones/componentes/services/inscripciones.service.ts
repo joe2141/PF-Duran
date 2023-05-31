@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Inscripciones } from '../models';
 import { enviroment } from '../../../../../environments/environments';
 
@@ -14,13 +14,19 @@ export class InscripcionesService {
   private inscripciones$: BehaviorSubject<Inscripciones[]> = new BehaviorSubject<Inscripciones[]>([]);
 
   constructor(private http: HttpClient) {
-    this.obtenerInscripciones().subscribe((inscripciones) => {
-      this.inscripciones$.next(inscripciones);
-    });
+    this.fetchInscripciones();
   }
 
   obtenerInscripciones(): Observable<Inscripciones[]> {
-    return this.http.get<Inscripciones[]>(baseUrl);
+    return this.inscripciones$.asObservable();
+  }
+
+  private fetchInscripciones() {
+    this.http
+      .get<Inscripciones[]>(baseUrl)
+      .subscribe((inscripciones) => {
+        this.inscripciones$.next(inscripciones);
+      });
   }
 
   obtenerInscripcionPorId(id: number): Observable<Inscripciones | undefined> {
@@ -43,10 +49,21 @@ export class InscripcionesService {
 
   eliminarInscripcion(id: number): Observable<void> {
     const url = `${baseUrl}/${id}`;
-    return this.http.delete<void>(url);
+    return this.http.delete<void>(url).pipe(
+      tap(() => {
+        this.inscripciones$.next(this.inscripciones$.value.filter(i => i.id !== id));
+      })
+    );
   }
 
   guardarInscripcion(inscripcion: Inscripciones): Observable<Inscripciones> {
-    return this.http.post<Inscripciones>(baseUrl, inscripcion);
+    return this.http.post<Inscripciones>(baseUrl, inscripcion).pipe(
+      map((savedInscripcion) => {
+        const inscripciones = this.inscripciones$.value;
+        inscripciones.push(savedInscripcion);
+        this.inscripciones$.next(inscripciones);
+        return savedInscripcion;
+      })
+    );
   }
 }

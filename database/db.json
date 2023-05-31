@@ -65,16 +65,10 @@
       "fecha_fin": "2023-04-27T01:27:59.631Z"
     },
     {
-      "nombre": "androit",
+      "nombre": "Android",
       "fecha_inicio": "2023-05-26T06:00:00.000Z",
       "fecha_fin": "2023-05-27T06:00:00.000Z",
       "id": 4
-    },
-    {
-      "nombre": "plebadon",
-      "fecha_inicio": "2023-05-26T06:00:00.000Z",
-      "fecha_fin": "2023-05-01T06:00:00.000Z",
-      "id": 5
     }
   ],
   "inscripciones": [
