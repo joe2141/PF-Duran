@@ -6,6 +6,7 @@ import { AlumnosService } from '../../alumnos/componentes/services/alumnos.servi
 import { Curso } from '../../cursos/Componentes/models';
 import { CursosService } from '../../cursos/Componentes/services/cursos.service';
 import { InscripcionesService } from '../componentes/services/inscripciones.service';
+import { take } from 'rxjs';
 
 
 
@@ -44,7 +45,7 @@ export class AbmInscripcionesComponent {
 
   guardar(): void {
     if (this.inscripcionesForms.valid) {
-      this.inscripcionesService.obtenerInscripciones().subscribe((inscripciones) => {
+      this.inscripcionesService.obtenerInscripciones().pipe(take(1)).subscribe((inscripciones) => {
         const newId = inscripciones.length + 1;
         const inscripcion = {
           id: newId,
@@ -54,7 +55,6 @@ export class AbmInscripcionesComponent {
         };
         this.inscripcionesService.guardarInscripcion(inscripcion).subscribe((savedInscripcion) => {
           this.dialogRef.close(savedInscripcion);
-          location.reload();
         });
       });
     } else {
