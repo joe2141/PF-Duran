@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
+import { enviroment } from 'src/environments/environments';
+
 
 
 @Component({
@@ -76,14 +78,14 @@ export class AbmAlumnosComponent {
       };
 
       if (this.data && this.data.alumnoParaEditar) {
-        const url = `http://localhost:3000/alumnos/${this.data.alumnoParaEditar.id}`;
+        const url = `${enviroment.apiBaseUrl}/alumnos/${this.data.alumnoParaEditar.id}`;
         this.http.put<any>(url, alumno).subscribe({
           next: (response) => {
             this.dialogRef.close(alumno);
           },
         });
       } else {
-        this.http.post<any>('http://localhost:3000/alumnos', alumno).subscribe({
+        this.http.post<any>(enviroment.apiBaseUrl + '/alumnos', alumno).subscribe({
           next: (response) => {
             this.dialogRef.close(alumno);
           },

@@ -43,6 +43,14 @@
       "pais": "peruo",
       "fecha_registro": "2023-05-18T16:14:46.112Z",
       "id": 3
+    },
+    {
+      "nombre": "Asada mamalona",
+      "apellido": "asdasdasd",
+      "email": "asdasd@mail.com",
+      "pais": "asdasdasdas",
+      "fecha_registro": "2023-05-31T02:10:50.346Z",
+      "id": 4
     }
   ],
   "cursos": [
