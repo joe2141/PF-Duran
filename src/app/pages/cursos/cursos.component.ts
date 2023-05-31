@@ -9,6 +9,7 @@ import { Usuario } from '../../core/models/index'
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { enviroment } from 'src/environments/environments';
 
 
 
@@ -64,7 +65,7 @@ export class CursosComponent implements OnInit {
 
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {
-        this.http.post<Curso>('http://localhost:3000/cursos', valor).subscribe((nuevoCurso: Curso) => {
+        this.http.post<Curso>(enviroment.apiBaseUrl + '/cursos', valor).subscribe((nuevoCurso: Curso) => {
           this.dataSource.data = [...this.dataSource.data, nuevoCurso];
         });
       }
@@ -80,7 +81,7 @@ export class CursosComponent implements OnInit {
 
     dialog.afterClosed().subscribe((dataDelCursoEditado) => {
       if (dataDelCursoEditado) {
-        const url = `http://localhost:3000/cursos/${curso.id}`;
+        const url = `${enviroment.apiBaseUrl}/cursos/${curso.id}`;
         this.http.put(url, dataDelCursoEditado).subscribe(() => {
           const index = this.dataSource.data.findIndex((c) => c.id === curso.id);
           if (index !== -1) {

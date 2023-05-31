@@ -43,14 +43,6 @@
       "pais": "peruo",
       "fecha_registro": "2023-05-18T16:14:46.112Z",
       "id": 3
-    },
-    {
-      "nombre": "Asada mamalona",
-      "apellido": "asdasdasd",
-      "email": "asdasd@mail.com",
-      "pais": "asdasdasdas",
-      "fecha_registro": "2023-05-31T02:10:50.346Z",
-      "id": 4
     }
   ],
   "cursos": [
@@ -77,6 +69,12 @@
       "fecha_inicio": "2023-05-26T06:00:00.000Z",
       "fecha_fin": "2023-05-27T06:00:00.000Z",
       "id": 4
+    },
+    {
+      "nombre": "plebadon",
+      "fecha_inicio": "2023-05-26T06:00:00.000Z",
+      "fecha_fin": "2023-05-01T06:00:00.000Z",
+      "id": 5
     }
   ],
   "inscripciones": [
