@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { CursosModule } from './pages/cursos/cursos.module';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { actionReducerMap } from './store.ts';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -19,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
-    CursosModule
+    CursosModule,
+    StoreModule.forRoot(actionReducerMap, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable, BehaviorSubject, map, catchError, of } from 'rxjs';
 import { Usuario } from 'src/app/core/models';
+import { Appstate } from 'src/app/store.ts';
 import { enviroment } from 'src/environments/environments';
+import { EstablecerUsuariosAutenticado, QuitarUsuarioAuntrnticado } from '../../store.ts/auth/auth.actions';
+import { selectAuthUser } from 'src/app/store.ts/auth/auth.selector';
 
 export interface LoginFormValue {
   email: string;
@@ -15,15 +19,19 @@ export interface LoginFormValue {
 })
 export class AuthService {
 
-  private authUser$ = new BehaviorSubject<Usuario | null>(null);
 
   constructor(
     private router: Router,
     private httpClient: HttpClient,
+    private store: Store<Appstate>,
   ) { }
 
   obtenerUsuarioAutenticado(): Observable<Usuario | null> {
-    return this.authUser$.asObservable();
+    return this.store.select(selectAuthUser);
+  }
+
+  establecerUsuariosAutenticado(usuario: Usuario): void {
+    this.store.dispatch(EstablecerUsuariosAutenticado({ payload: usuario }))
   }
 
   login(formValue: LoginFormValue): void {
@@ -39,7 +47,7 @@ export class AuthService {
         const usuarioAutenticado = usuarios[0];
         if (usuarioAutenticado) {
           localStorage.setItem('token', usuarioAutenticado.token)
-          this.authUser$.next(usuarioAutenticado);
+          this.establecerUsuariosAutenticado(usuarioAutenticado);
           this.router.navigate(['dashboard']);
         } else {
           alert('¡Usuario y password incorrectos!')
@@ -50,7 +58,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    this.authUser$.next(null);
+    this.store.dispatch(QuitarUsuarioAuntrnticado());
     this.router.navigate(['auth']);
   }
 
@@ -69,7 +77,7 @@ export class AuthService {
           const usuarioAutenticado = usuarios[0];
           if (usuarioAutenticado) {
             localStorage.setItem('token', usuarioAutenticado.token)
-            this.authUser$.next(usuarioAutenticado);
+            this.establecerUsuariosAutenticado(usuarioAutenticado)
           }
           return !!usuarioAutenticado;
         }),
