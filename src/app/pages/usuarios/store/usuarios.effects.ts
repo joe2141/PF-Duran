@@ -15,7 +15,7 @@ export class UsuariosEffects {
       ofType(UsuariosActions.createUsuarios),
       concatMap(
         (action) =>
-          this.usuarioService.crearUsuario(action.data)
+          this.usuarioService.createUsuario(action.data)
             .pipe(
               map((res) => UsuariosActions.createUsuariosSuccess({ data: res })),
               catchError((error) => of(UsuariosActions.createUsuariosFailure({ error })))
@@ -29,7 +29,7 @@ export class UsuariosEffects {
 
       ofType(UsuariosActions.loadUsuarios),
       concatMap(() =>
-      this.usuarioService.obtenerUsuarios().pipe(
+      this.usuarioService.getAllUsuarios().pipe(
           map(data => UsuariosActions.loadUsuariosSuccess({ data })),
           catchError(error => of(UsuariosActions.loadUsuariosFailure({ error }))))
       )
@@ -40,7 +40,7 @@ export class UsuariosEffects {
     return this.actions$.pipe(
       ofType(UsuariosActions.deleteUsuarios),
       concatMap((action) =>
-        this.usuarioService.eliminarUsuario(action.id).pipe(
+        this.usuarioService.deleteUsuarioById(action.id).pipe(
           map(data => UsuariosActions.deleteUsuariosSuccess({ data: action.id })),
           catchError(error => of(UsuariosActions.deleteUsuariosFailure({ error })))
         )
