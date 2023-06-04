@@ -4,7 +4,7 @@ export interface Usuario {
   apellido: string;
   email: string;
   password: string;
-  token: string;
+  token?: string | null | undefined;
   role: string;
 }
 

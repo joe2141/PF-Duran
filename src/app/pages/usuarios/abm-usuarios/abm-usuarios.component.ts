@@ -7,6 +7,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { Store } from '@ngrx/store';
 import { UsuariosActions } from '../store/usuarios.actions';
 import { Subject } from 'rxjs';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-abm-usuarios',
@@ -16,14 +17,18 @@ import { Subject } from 'rxjs';
 export class AbmUsuariosComponent implements OnInit, OnDestroy {
   usuario: Usuario[] | undefined
 
-
-  usuarioIdControl = new FormControl<number | null>(null, [
-    Validators.required,
-  ]);
-
+  nombreControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  apellidoControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  correoControl = new FormControl('', [Validators.required, Validators.email]);
+  contrasenaControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  roleControl = new FormControl('', [Validators.required]);
 
   usuarioForm = new FormGroup({
-    usuarioId: this.usuarioIdControl,
+    nombre: this.nombreControl,
+    apellido: this.apellidoControl,
+    email: this.correoControl,
+    password: this.contrasenaControl,
+    role: this.roleControl
   });
 
   destroyed$ = new Subject<void>();
@@ -31,9 +36,17 @@ export class AbmUsuariosComponent implements OnInit, OnDestroy {
   constructor(
     private usuariosService: UsuarioService,
     private dialogRef: DialogRef<AbmUsuariosComponent>,
-    private store: Store
+    private store: Store,
+    @Inject(MAT_DIALOG_DATA) private data: any
   ) {
-
+    if (data) {
+      const usuarioParaEditar = data.usuario;
+      this.nombreControl.setValue(usuarioParaEditar.nombre);
+      this.apellidoControl.setValue(usuarioParaEditar.apellido);
+      this.correoControl.setValue(usuarioParaEditar.email);
+      this.contrasenaControl.setValue(usuarioParaEditar.password);
+      this.roleControl.setValue(usuarioParaEditar.role);
+    }
   }
 
   ngOnDestroy(): void {
@@ -41,9 +54,7 @@ export class AbmUsuariosComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   onSave(): void {
     this.store.dispatch(

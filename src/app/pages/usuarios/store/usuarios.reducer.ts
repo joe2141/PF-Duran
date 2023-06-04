@@ -1,4 +1,4 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createAction, createFeature, createReducer, on, props } from '@ngrx/store';
 import { UsuariosActions } from './usuarios.actions';
 import { Usuario } from '../componentes/models/indesx';
 
@@ -95,6 +95,20 @@ export const usuariosFeature = createFeature({
   name: usuariosFeatureKey,
   reducer,
 });
+export const createUsuarios = createAction(
+  '[Usuarios] Crear Usuario',
+  props<{ data: Usuario }>()
+);
+
+export const createUsuariosSuccess = createAction(
+  '[Usuarios] Crear Usuario Exitoso',
+  props<{ data: Usuario }>()
+);
+
+export const createUsuariosFailure = createAction(
+  '[Usuarios] Crear Usuario Fallido',
+  props<{ error: any }>()
+);
 
 export { createReducer };
 

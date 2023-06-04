@@ -9,40 +9,38 @@ import { concatMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UsuarioService {
-  obtenerUsuarios() {
-    throw new Error('Method not implemented.');
-  }
-  eliminarUsuario(id: number) {
-    throw new Error('Method not implemented.');
-  }
   constructor(private httpClient: HttpClient) {}
 
   createUsuario(data: Usuario): Observable<Usuario> {
-    return this.httpClient
-    .post<Usuario>(`${enviroment.apiBaseUrl}/usuarios`, data)
-    .pipe(
-      concatMap((createResponser) =>
-      this.getUsuarioById(createResponser.id)
-    )
-    );
+    return this.httpClient.post<Usuario>(`${enviroment.apiBaseUrl}/usuarios`, data);
   }
 
   getUsuarioById(id: number): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(
-      `${enviroment.apiBaseUrl}/usuarios/${id}`
-    )
+    return this.httpClient.get<Usuario>(`${enviroment.apiBaseUrl}/usuarios/${id}`);
   }
 
   getAllUsuarios(): Observable<Usuario[]> {
-    return this.httpClient.get<Usuario[]>(
-      `${enviroment.apiBaseUrl}/usuarios`
-    );
+    return this.httpClient.get<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios`);
   }
 
   deleteUsuarioById(id: number): Observable<unknown> {
-    return this.httpClient.delete(
-      `${enviroment.apiBaseUrl}/usuarios/${id}`
-    );
+    return this.httpClient.delete(`${enviroment.apiBaseUrl}/usuarios/${id}`);
   }
 
+
+  generarTokenAleatorio(): string {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const longitud = 32;
+    const array = new Uint8Array(longitud);
+    const caracteresLength = caracteres.length;
+
+    crypto.getRandomValues(array);
+
+    let resultado = '';
+    for (let i = 0; i < longitud; i++) {
+      resultado += caracteres.charAt(array[i] % caracteresLength);
+    }
+
+    return resultado;
+  }
 }
