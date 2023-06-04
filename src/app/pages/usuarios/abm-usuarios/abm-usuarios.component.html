@@ -1,7 +1,13 @@
-<h3 mat-dialog-title>CREAR INSCRIPCION</h3>
+<h3 mat-dialog-title>CREAR USUARIO</h3>
 <div mat-dialog-content>
   <form [formGroup]="usuarioForm">
     <div>
+      <mat-form-field class="width">
+        <mat-label>Nombre</mat-label>
+        <input matInput
+          class="form-control" />
+      </mat-form-field>
+
       <mat-form-field>
         <!-- <input matInput /> -->
         <mat-label>Estudiante</mat-label>
@@ -12,6 +18,7 @@
         </mat-select>
       </mat-form-field>
     </div>
+
   </form>
 </div>
 <div mat-dialog-actions>

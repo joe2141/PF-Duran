@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuarioService } from './componentes/usuarios.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectUsuariosState } from './store/usuarios.selectors';
 import { UsuariosActions } from './store/usuarios.actions';
@@ -15,14 +15,16 @@ import { State } from './store/usuarios.reducer';
   styleUrls: ['./usuarios.component.scss']
 })
 export class UsuariosComponent implements OnInit {
-  state$: Observable<State>;
+  data: Observable<any[]>;
 
   constructor(
     private usuariosService: UsuarioService,
     private matDialog: MatDialog,
-    private store: Store
+    private store: Store<{ usuarios: State }>
   ) {
-    this.state$ = this.store.select(selectUsuariosState);
+    this.data = this.store.select(selectUsuariosState).pipe(
+      map((state: State) => state.usuarios)
+    );
   }
 
   ngOnInit(): void {
@@ -36,6 +38,8 @@ export class UsuariosComponent implements OnInit {
   crearUsuario(): void {
     this.matDialog.open(AbmUsuariosComponent)
   }
+
+  chale():void {}
 
 }
 

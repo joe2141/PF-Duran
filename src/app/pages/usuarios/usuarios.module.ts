@@ -18,6 +18,8 @@ import {MatCardModule} from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { UsuariosEffects } from './store/usuarios.effects';
+import { usuariosFeature } from './store/usuarios.reducer';
+import { StoreModule } from '@ngrx/store';
 
 
 
@@ -45,6 +47,7 @@ import { UsuariosEffects } from './store/usuarios.effects';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCardModule,
+    StoreModule.forFeature(usuariosFeature),
     RouterModule.forChild([
       {
         path: '',

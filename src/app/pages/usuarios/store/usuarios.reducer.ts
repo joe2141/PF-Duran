@@ -96,3 +96,5 @@ export const usuariosFeature = createFeature({
   reducer,
 });
 
+export { createReducer };
+
