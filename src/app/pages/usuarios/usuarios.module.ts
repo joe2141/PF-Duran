@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import { RouterModule } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { UsuariosEffects } from './store/usuarios.effects';
 
 
 
@@ -49,6 +51,7 @@ import { RouterModule } from '@angular/router';
         component: UsuariosComponent
       }
     ]),
+    EffectsModule.forFeature([UsuariosEffects]),
   ]
 })
 export class UsuariosModuleTsModule { }
