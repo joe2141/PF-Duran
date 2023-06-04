@@ -1,42 +1,23 @@
 import { Injectable } from '@angular/core';
-import { CrearUsuarioPayload, Usuario } from './models/indesx';
-import { Observable, of, switchMap } from 'rxjs';
+import { Usuario } from './models/indesx';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { enviroment } from '../../../../environments/environments';
+import { enviroment } from 'src/environments/environments';
+import { concatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  private apiUrl = `${enviroment.apiBaseUrl}/usuarios`;
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  obtenerUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.apiUrl);
+  createUsuario(data: Usuario): Observable<Usuario> {
+    const token = this.generarTokenAleatorio();
+    const usuarioWithToken = { ...data, token };
+    return this.httpClient.post<Usuario>(`${enviroment.apiBaseUrl}/usuarios`, usuarioWithToken);
   }
 
-  getUsuarioById(usuarioId: number): Observable<Usuario | undefined> {
-    return this.http.get<Usuario>(`${this.apiUrl}/${usuarioId}`);
-  }
-
-  crearUsuario(usuario: Usuario): Observable<Usuario> {
-    const nuevoUsuario: Usuario = {
-      ...usuario,
-      token: this.generarTokenAleatorio()
-    };
-    return this.http.post<Usuario>(this.apiUrl, nuevoUsuario);
-  }
-
-  editarUsuario(usuarioId: number, actualizacion: Partial<Usuario>): Observable<Usuario> {
-    return this.http.patch<Usuario>(`${this.apiUrl}/${usuarioId}`, actualizacion);
-  }
-
-  eliminarUsuario(usuarioId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${usuarioId}`);
-  }
-
-  private generarTokenAleatorio(): string {
+  generarTokenAleatorio(): string {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const longitud = 32;
     const array = new Uint8Array(longitud);
@@ -51,4 +32,17 @@ export class UsuarioService {
 
     return resultado;
   }
+
+  getUsuarioById(id: number): Observable<Usuario> {
+    return this.httpClient.get<Usuario>(`${enviroment.apiBaseUrl}/usuarios/${id}`);
+  }
+
+  getAllUsuarios(): Observable<Usuario[]> {
+    return this.httpClient.get<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios`);
+  }
+
+  deleteUsuarioById(id: number): Observable<unknown> {
+    return this.httpClient.delete(`${enviroment.apiBaseUrl}/usuarios/${id}`);
+  }
+
 }

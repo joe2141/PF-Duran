@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuarioService } from './componentes/usuarios.service';
+import { Observable, map } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectUsuariosState } from './store/usuarios.selectors';
+import { UsuariosActions } from './store/usuarios.actions';
 import { AbmUsuariosComponent } from './abm-usuarios/abm-usuarios.component';
-import { Usuario } from './componentes/models/indesx';
+import { State } from './store/usuarios.reducer';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -12,71 +15,32 @@ import { Usuario } from './componentes/models/indesx';
   styleUrls: ['./usuarios.component.scss']
 })
 export class UsuariosComponent implements OnInit {
-  dataSource = new MatTableDataSource<Usuario>();
-  displayedColumns = ['id', 'nombre', 'apellido', 'email', 'password', 'role', 'acciones'];
+  data: Observable<any[]>;
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     private usuariosService: UsuarioService,
-    private dialog: MatDialog
-  ) { }
+    private matDialog: MatDialog,
+    private store: Store<{ usuarios: State }>
+  ) {
+    this.data = this.store.select(selectUsuariosState).pipe(
+      map((state: State) => state.usuarios)
+    );
+  }
 
   ngOnInit(): void {
-    this.usuariosService.obtenerUsuarios().subscribe({
-      next: (usuarios) => {
-        this.dataSource.data = usuarios;
-      },
-    });
+    this.store.dispatch(UsuariosActions.loadUsuarios());
+  }
+
+  eliminarUsuarioporId(id: number): void {
+    this.store.dispatch(UsuariosActions.deleteUsuarios({id}));
   }
 
   crearUsuario(): void {
-    const dialog = this.dialog.open(AbmUsuariosComponent);
-
-    dialog.afterClosed().subscribe((formValue) => {
-      if (formValue) {
-        this.usuariosService.crearUsuario(formValue).subscribe((nuevoUsuario) => {
-          this.dataSource.data.push(nuevoUsuario);
-          this.dataSource._updateChangeSubscription();
-        });
-      }
-    });
+    this.matDialog.open(AbmUsuariosComponent)
   }
 
-
-  editarUsuario(usuario: Usuario): void {
-    const dialog = this.dialog.open(AbmUsuariosComponent, {
-      data: {
-        usuario,
-      }
-    });
-
-    dialog.afterClosed()
-      .subscribe((formValue) => {
-        if (formValue) {
-          this.usuariosService.editarUsuario(usuario.id, formValue)
-            .subscribe((usuarioActualizado) => {
-              const indice = this.dataSource.data.findIndex(u => u.id === usuarioActualizado.id);
-              if (indice !== -1) {
-                this.dataSource.data[indice] = usuarioActualizado;
-                this.dataSource._updateChangeSubscription();
-              }
-            });
-        }
-      });
-  }
-
-  eliminarUsuario(usuario: Usuario): void {
-    if (confirm('¿Está seguro?')) {
-      this.usuariosService.eliminarUsuario(usuario.id).subscribe(() => {
-        this.dataSource.data = this.dataSource.data.filter((u) => u.id !== usuario.id);
-      });
-    }
-  }
-
-  aplicarFiltros(ev: Event): void {
-    const inputValue = (ev.target as HTMLInputElement)?.value;
-    this.dataSource.filter = inputValue?.trim()?.toLowerCase();
-  }
+  chale():void {}
 
 }
+
+
