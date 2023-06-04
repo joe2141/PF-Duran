@@ -17,32 +17,148 @@
       "password": "12334",
       "token": "fjkhasdjkfhashjkHKJHJKHklikl45io23l4523j4h3",
       "role": "user"
+    },
+    {
+      "id": 3,
+      "nombre": "Carlos",
+      "apellido": "Menem",
+      "email": "carlos@mail.com",
+      "password": "123456",
+      "token": "dfjklgsdjfñgjsldkgjsdklñgjdflñgjdfgdf",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "nombre": "Cristina",
+      "apellido": "Fernandez",
+      "email": "cristina@mail.com",
+      "password": "123456",
+      "token": "dsklfjdklñjfjkldf9sdf87asfsdhfjknejkr",
+      "role": "user"
+    },
+    {
+      "id": 5,
+      "nombre": "Mauricio",
+      "apellido": "Macri",
+      "email": "mauricio@mail.com",
+      "password": "123456",
+      "token": "asdjkfksdfñlñfksdñfsdjkfjsdjksdfkjsdf",
+      "role": "user"
+    },
+    {
+      "nombre": "Josue",
+      "apellido": "Baez",
+      "email": "josue@mail.com",
+      "password": "12345678",
+      "role": "admin",
+      "token": "sv2BkrVtz0GJgIJYcMwoW9KSRyW620Ug",
+      "id": 6
     }
   ],
   "alumnos": [
     {
       "id": 1,
-      "nombre": "Victorine",
-      "apellido": "Vilmantė",
-      "email": "victorine@mail.com",
+      "nombre": "Lucas",
+      "apellido": "González",
+      "email": "lucas_gonzalez@mail.com",
       "pais": "Argentina",
-      "fecha_registro": "2023-04-27T01:27:59.631Z"
+      "fecha_registro": "2023-08-20T09:30:15.123Z"
     },
     {
       "id": 2,
-      "nombre": "alkapone",
-      "apellido": "Alia",
-      "email": "alhajialia@mail.com",
-      "pais": "India",
-      "fecha_registro": "2023-04-27T01:27:59.631Z"
+      "nombre": "María",
+      "apellido": "Martínez",
+      "email": "maria_martinez@mail.com",
+      "pais": "España",
+      "fecha_registro": "2023-08-20T09:30:15.123Z"
     },
     {
-      "nombre": "Edurne",
-      "apellido": "Carballo",
-      "email": "edurne@mail.com",
-      "pais": "peruo",
-      "fecha_registro": "2023-05-18T16:14:46.112Z",
-      "id": 3
+      "id": 3,
+      "nombre": "Juan",
+      "apellido": "López",
+      "email": "juan_lopez@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-08-20T09:30:15.123Z"
+    },
+    {
+      "id": 4,
+      "nombre": "Diego",
+      "apellido": "Maradona",
+      "email": "diego_4@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-06-01T09:45:12.521Z"
+    },
+    {
+      "id": 5,
+      "nombre": "Lionel",
+      "apellido": "Messi",
+      "email": "lionel_5@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-06-01T10:20:34.782Z"
+    },
+    {
+      "id": 6,
+      "nombre": "Juan",
+      "apellido": "Riquelme",
+      "email": "juan_6@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-06-01T11:15:09.921Z"
+    },
+    {
+      "id": 7,
+      "nombre": "Gabriel",
+      "apellido": "Batistuta",
+      "email": "gabriel_7@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-06-01T12:30:57.056Z"
+    },
+    {
+      "id": 8,
+      "nombre": "Alfredo",
+      "apellido": "Di Stefano",
+      "email": "alfredo_8@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-06-01T14:05:23.235Z"
+    },
+    {
+      "id": 9,
+      "nombre": "Javier",
+      "apellido": "Zanetti",
+      "email": "javier_9@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-06-02T08:12:45.371Z"
+    },
+    {
+      "id": 10,
+      "nombre": "Mario",
+      "apellido": "Kempes",
+      "email": "mario_10@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-06-02T09:55:17.982Z"
+    },
+    {
+      "id": 11,
+      "nombre": "Hernan",
+      "apellido": "Crespo",
+      "email": "hernan_11@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-06-02T11:28:03.719Z"
+    },
+    {
+      "id": 12,
+      "nombre": "Oscar",
+      "apellido": "Ruggeri",
+      "email": "oscar_12@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-06-02T13:15:26.835Z"
+    },
+    {
+      "id": 13,
+      "nombre": "Daniel",
+      "apellido": "Passarella",
+      "email": "daniel_13@mail.com",
+      "pais": "Argentina",
+      "fecha_registro": "2023-06-03T10:08:54.901Z"
     }
   ],
   "cursos": [
@@ -69,6 +185,24 @@
       "fecha_inicio": "2023-05-26T06:00:00.000Z",
       "fecha_fin": "2023-05-27T06:00:00.000Z",
       "id": 4
+    },
+    {
+      "id": 5,
+      "nombre": "Python",
+      "fecha_inicio": "2023-06-10T10:00:00.000Z",
+      "fecha_fin": "2023-06-15T16:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "nombre": "Java",
+      "fecha_inicio": "2023-07-01T09:30:00.000Z",
+      "fecha_fin": "2023-07-07T17:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "nombre": "C#",
+      "fecha_inicio": "2023-07-15T13:00:00.000Z",
+      "fecha_fin": "2023-07-20T18:30:00.000Z"
     }
   ],
   "inscripciones": [
@@ -89,6 +223,108 @@
       "alumnoId": 1,
       "cursoId": 3,
       "fecha_inscripcion": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 4,
+      "alumnoId": 2,
+      "cursoId": 4,
+      "fecha_inscripcion": "2023-05-28T08:45:12.123Z"
+    },
+    {
+      "id": 5,
+      "alumnoId": 2,
+      "cursoId": 5,
+      "fecha_inscripcion": "2023-05-28T08:45:12.123Z"
+    },
+    {
+      "id": 6,
+      "alumnoId": 3,
+      "cursoId": 1,
+      "fecha_inscripcion": "2023-05-29T14:23:05.987Z"
+    },
+    {
+      "id": 7,
+      "alumnoId": 3,
+      "cursoId": 2,
+      "fecha_inscripcion": "2023-05-29T14:23:05.987Z"
+    },
+    {
+      "id": 8,
+      "alumnoId": 4,
+      "cursoId": 1,
+      "fecha_inscripcion": "2023-05-30T11:11:22.345Z"
+    },
+    {
+      "id": 9,
+      "alumnoId": 4,
+      "cursoId": 2,
+      "fecha_inscripcion": "2023-05-30T11:11:22.345Z"
+    },
+    {
+      "id": 10,
+      "alumnoId": 4,
+      "cursoId": 3,
+      "fecha_inscripcion": "2023-05-30T11:11:22.345Z"
+    },
+    {
+      "id": 11,
+      "alumnoId": 5,
+      "cursoId": 4,
+      "fecha_inscripcion": "2023-05-31T09:02:15.678Z"
+    },
+    {
+      "id": 12,
+      "alumnoId": 5,
+      "cursoId": 5,
+      "fecha_inscripcion": "2023-05-31T09:02:15.678Z"
+    },
+    {
+      "id": 13,
+      "alumnoId": 6,
+      "cursoId": 1,
+      "fecha_inscripcion": "2023-06-01T10:20:34.782Z"
+    },
+    {
+      "id": 14,
+      "alumnoId": 6,
+      "cursoId": 2,
+      "fecha_inscripcion": "2023-06-01T10:20:34.782Z"
+    },
+    {
+      "id": 15,
+      "alumnoId": 7,
+      "cursoId": 3,
+      "fecha_inscripcion": "2023-06-01T11:15:09.921Z"
+    },
+    {
+      "id": 16,
+      "alumnoId": 7,
+      "cursoId": 4,
+      "fecha_inscripcion": "2023-06-01T11:15:09.921Z"
+    },
+    {
+      "id": 17,
+      "alumnoId": 8,
+      "cursoId": 5,
+      "fecha_inscripcion": "2023-06-01T12:30:57.056Z"
+    },
+    {
+      "id": 18,
+      "alumnoId": 9,
+      "cursoId": 1,
+      "fecha_inscripcion": "2023-06-02T14:40:28.291Z"
+    },
+    {
+      "id": 19,
+      "alumnoId": 9,
+      "cursoId": 2,
+      "fecha_inscripcion": "2023-06-02T14:40:28.291Z"
+    },
+    {
+      "id": 20,
+      "alumnoId": 9,
+      "cursoId": 3,
+      "fecha_inscripcion": "2023-06-02T14:40:28.291Z"
     }
   ]
 }
