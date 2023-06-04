@@ -1,6 +1,12 @@
 # ProyectoFinal
+Este es la primera vez que trabajo con algo referente a JavaScript de esta manera espero que mi proyecto sea lo suficientente bueno
 
 Esta es una sencilla (para mi no fue sencilla) aplicacion para crear alumnos, crear curos e incribirlos los alumnos en los cursos, con gestion de usuario y autenticacion de los mismo 
+
+## Pevio
+intalar node.js (https://nodejs.org/en)
+instalar Angular CLI (https://angular.io/cli)
+intalar ngrx (https://ngrx.io/guide/store)
 ## Instalación
 
 1. Clona el repositorio:
@@ -8,28 +14,20 @@ Esta es una sencilla (para mi no fue sencilla) aplicacion para crear alumnos, cr
 git clone https://github.com/joe2141/PF-Duran.git
 
 2. Instala las dependencias:
-
-intalar node.js 
 npm install
 json-server (https://www.npmjs.com/package/json-server)
 
-
-
 ## Uso
+1. Inicia la aplicación:
+abre una nueva terminal y corre el servicio de jsonserver con el comando : json-server --watch database/db.json
 
-1. Configura el archivo de configuración `config.json` con los valores necesarios.
-2. Inicia la aplicación:
-npm start
-3. Accede a la aplicación en tu navegador:
-http://localhost:3000
+2. Corre la palicacion abriendo ptra terminal sin cerrar la de json server y corre el comando : ng s -o se abrira el navegador para que puedas iniciar sesion
 
+3. inica sesion: sus credenciales son 
+email: "josue@mail.com",
+password: "12345678"
 
-
-## Características
-
-- Característica 1: Descripción breve de la característica 1.
-- Característica 2: Descripción breve de la característica 2.
-- Característica 3: Descripción breve de la característica 3.
+4. Haga pruevas de lo que guste
 
 ## Contribución
 
@@ -39,10 +37,6 @@ Si deseas contribuir a este proyecto, sigue los pasos a continuación:
 2. Crea una nueva rama para tu contribución.
 3. Realiza los cambios necesarios.
 4. Envía un pull request.
-
-## Autor
-
-Nombre del autor: Joel Duran (https://github.com/joe2141)
 
 ## Licencia
 Si lo necesitas usalo yo no tengo problema
