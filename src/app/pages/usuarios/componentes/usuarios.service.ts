@@ -12,21 +12,10 @@ export class UsuarioService {
   constructor(private httpClient: HttpClient) {}
 
   createUsuario(data: Usuario): Observable<Usuario> {
-    return this.httpClient.post<Usuario>(`${enviroment.apiBaseUrl}/usuarios`, data);
+    const token = this.generarTokenAleatorio();
+    const usuarioWithToken = { ...data, token };
+    return this.httpClient.post<Usuario>(`${enviroment.apiBaseUrl}/usuarios`, usuarioWithToken);
   }
-
-  getUsuarioById(id: number): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(`${enviroment.apiBaseUrl}/usuarios/${id}`);
-  }
-
-  getAllUsuarios(): Observable<Usuario[]> {
-    return this.httpClient.get<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios`);
-  }
-
-  deleteUsuarioById(id: number): Observable<unknown> {
-    return this.httpClient.delete(`${enviroment.apiBaseUrl}/usuarios/${id}`);
-  }
-
 
   generarTokenAleatorio(): string {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -43,4 +32,17 @@ export class UsuarioService {
 
     return resultado;
   }
+
+  getUsuarioById(id: number): Observable<Usuario> {
+    return this.httpClient.get<Usuario>(`${enviroment.apiBaseUrl}/usuarios/${id}`);
+  }
+
+  getAllUsuarios(): Observable<Usuario[]> {
+    return this.httpClient.get<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios`);
+  }
+
+  deleteUsuarioById(id: number): Observable<unknown> {
+    return this.httpClient.delete(`${enviroment.apiBaseUrl}/usuarios/${id}`);
+  }
+
 }

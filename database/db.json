@@ -17,14 +17,6 @@
       "password": "12334",
       "token": "fjkhasdjkfhashjkHKJHJKHklikl45io23l4523j4h3",
       "role": "user"
-    },
-    {
-      "nombre": "asdasdads",
-      "apellido": "asdasd",
-      "email": "asdas@asdasd",
-      "password": "asdasd",
-      "role": "user",
-      "id": 3
     }
   ],
   "alumnos": [
